@@ -13,7 +13,7 @@ struct BaoAnGongFisherApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ToxicFishListView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

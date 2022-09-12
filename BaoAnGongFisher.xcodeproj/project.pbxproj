@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C04029DD28C84E5900F83CD9 /* BaoAnGongFisherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029DC28C84E5900F83CD9 /* BaoAnGongFisherApp.swift */; };
-		C04029DF28C84E5900F83CD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029DE28C84E5900F83CD9 /* ContentView.swift */; };
+		C04029DF28C84E5900F83CD9 /* ToxicFishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029DE28C84E5900F83CD9 /* ToxicFishListView.swift */; };
 		C04029E128C84E5A00F83CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C04029E028C84E5A00F83CD9 /* Assets.xcassets */; };
 		C04029E428C84E5A00F83CD9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C04029E328C84E5A00F83CD9 /* Preview Assets.xcassets */; };
 		C04029E628C84E5A00F83CD9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029E528C84E5A00F83CD9 /* Persistence.swift */; };
@@ -16,6 +16,7 @@
 		C04029F328C84E5A00F83CD9 /* BaoAnGongFisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029F228C84E5A00F83CD9 /* BaoAnGongFisherTests.swift */; };
 		C04029FD28C84E5A00F83CD9 /* BaoAnGongFisherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029FC28C84E5A00F83CD9 /* BaoAnGongFisherUITests.swift */; };
 		C04029FF28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029FE28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift */; };
+		C0FFBFE928CAC5FC00E2202C /* ToxicFish.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +39,7 @@
 /* Begin PBXFileReference section */
 		C04029D928C84E5900F83CD9 /* BaoAnGongFisher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaoAnGongFisher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04029DC28C84E5900F83CD9 /* BaoAnGongFisherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaoAnGongFisherApp.swift; sourceTree = "<group>"; };
-		C04029DE28C84E5900F83CD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C04029DE28C84E5900F83CD9 /* ToxicFishListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToxicFishListView.swift; sourceTree = "<group>"; };
 		C04029E028C84E5A00F83CD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C04029E328C84E5A00F83CD9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C04029E528C84E5A00F83CD9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -48,6 +49,7 @@
 		C04029F828C84E5A00F83CD9 /* BaoAnGongFisherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaoAnGongFisherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04029FC28C84E5A00F83CD9 /* BaoAnGongFisherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaoAnGongFisherUITests.swift; sourceTree = "<group>"; };
 		C04029FE28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaoAnGongFisherUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToxicFish.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,11 +101,12 @@
 			isa = PBXGroup;
 			children = (
 				C04029DC28C84E5900F83CD9 /* BaoAnGongFisherApp.swift */,
-				C04029DE28C84E5900F83CD9 /* ContentView.swift */,
+				C04029DE28C84E5900F83CD9 /* ToxicFishListView.swift */,
 				C04029E028C84E5A00F83CD9 /* Assets.xcassets */,
 				C04029E528C84E5A00F83CD9 /* Persistence.swift */,
 				C04029E728C84E5A00F83CD9 /* BaoAnGongFisher.xcdatamodeld */,
 				C04029E228C84E5A00F83CD9 /* Preview Content */,
+				C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */,
 			);
 			path = BaoAnGongFisher;
 			sourceTree = "<group>";
@@ -265,7 +268,8 @@
 			files = (
 				C04029E628C84E5A00F83CD9 /* Persistence.swift in Sources */,
 				C04029E928C84E5A00F83CD9 /* BaoAnGongFisher.xcdatamodeld in Sources */,
-				C04029DF28C84E5900F83CD9 /* ContentView.swift in Sources */,
+				C0FFBFE928CAC5FC00E2202C /* ToxicFish.swift in Sources */,
+				C04029DF28C84E5900F83CD9 /* ToxicFishListView.swift in Sources */,
 				C04029DD28C84E5900F83CD9 /* BaoAnGongFisherApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
