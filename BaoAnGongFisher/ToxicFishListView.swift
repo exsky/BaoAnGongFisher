@@ -13,23 +13,14 @@ struct ToxicFishListView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                ForEach(fishCates, id: \.self) { fishCate in
-                    VStack {
-                        NavigationView {
-                            List(toxicfishes, id: \.self) { toxicfish in    // 每一種魚
-                                // Fish Rectangle
-                                if toxicfish.fishCategory == fishCate {
-                                    FishCardView(
-                                        imgName: toxicfish.imageName,
-                                        fishName: toxicfish.fishName,
-                                        fishNickName: toxicfish.fishNickName)
-                                }   // end of 每一種魚
-                            }
-                            .listRowSeparator(.hidden)
-                            .navigationTitle(fishCate)
-                        }
-                    }   // end of 每一分類魚
+            // 加一層 ScrollView
+            ScrollView(.vertical) {
+                LazyVStack(alignment: .center) {
+                    ForEach(fishCates, id: \.self) { fishCate in
+                        FishCategoryView(
+                            fishCate: fishCate,
+                            toxicfishes: toxicfishes)
+                    }
                 }
             }
             .navigationBarTitle(Text("危險魚類圖鑑"), displayMode: .inline)
@@ -47,7 +38,6 @@ struct ToxicFishListView_Previews: PreviewProvider {
 
 // 魚卡
 struct FishCardView: View {
-    
     // 先定義好要接收的參數名稱與類型
     var imgName: String
     var fishName: String
@@ -58,8 +48,9 @@ struct FishCardView: View {
             // 最左邊放一張圖片
             Image(imgName)
                 .resizable()
-                .frame(width: 40, height: 40)
-                .cornerRadius(4)
+                .frame(width: 50, height: 50)
+                .background(Color.white)
+                .cornerRadius(10)
             // 放一個垂直堆疊
             VStack {
                 // 魚的名字
@@ -78,14 +69,36 @@ struct FishCardView: View {
                     Spacer()
                 }
             }
-            Button(action: {
-                if let yourURL = URL(string: "www.youtube.com") {
-                    UIApplication.shared.open(yourURL, options: [:], completionHandler: nil)
-                }
+        }
+        .padding(.leading, 40)
+    }
+}
 
-            }) {
-               Text("Go to youtube")
+// 魚分類
+struct FishCategoryView: View {
+    var fishCate: String
+    var toxicfishes: [FishRect]
+    var body: some View {
+        HStack {
+            Text(fishCate)
+                .font(.system(size: 40))
+                .fontWeight(.heavy)
+            Spacer()
+        }
+        .padding(.leading, 20)
+        // 魚卡直堆
+        VStack {
+            //List(toxicfishes, id: \.self) { toxicfish in    // 每一種魚
+            ForEach(toxicfishes, id: \.self) { toxicfish in
+                // Fish Rectangle
+                if toxicfish.fishCategory == fishCate {
+                    FishCardView(
+                        imgName: toxicfish.imageName,
+                        fishName: toxicfish.fishName,
+                        fishNickName: toxicfish.fishNickName)
+                }   // end of 每一種魚
             }
+            .listRowSeparator(.hidden)
         }
     }
 }
