@@ -18,8 +18,16 @@ var toxicFishesData = [
     FishRect(fishName: "赤魟", fishCategory: "魟", fishNickName: ["赤土魟", "紅魴魚", "牛尾魴"]),
     FishRect(fishName: "黃魟", fishCategory: "魟", fishNickName: ["笨氏土魟", "黃魴", "紅魴"]),
     FishRect(fishName: "石狗公", fishCategory: "虎", fishNickName: ["石頭魚", "獅甕", "紅鱠仔"]),
+    FishRect(fishName: "臭肚", fishCategory: "象耳", fishNickName: ["臭肚魚", "象魚", "疏網", "娘戾仔", "西網", "羊矮仔", "盧矮仔"]),
     FishRect(fishName: "花身鯻", fishCategory: "斑午", fishNickName: ["花身雞魚", "花身仔", "雞仔魚", "斑午"]),
     FishRect(fishName: "線紋鰻鯰", fishCategory: "沙毛", fishNickName: ["鰻鯰", "沙毛", "海土虱", "斜門"])
 ]
 
-var fishCates = ["魟", "虎", "沙毛", "斑午"]
+var fishCates = ["魟", "虎", "沙毛", "斑午", "象耳"]
+var catesLinks = [
+    "https://fishdb.sinica.edu.tw/chi/family.php?id=F055",
+    "https://fishdb.sinica.edu.tw/chi/family.php?id=F304",
+    "https://fishdb.sinica.edu.tw/chi/family.php?id=F151",
+    "https://fishdb.sinica.edu.tw/chi/family.php?id=F399",
+    "https://fishdb.sinica.edu.tw/chi/family.php?id=F467"]
+let fishCatesLinksDict = Dictionary(uniqueKeysWithValues: zip(fishCates, catesLinks))
