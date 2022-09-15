@@ -15,6 +15,8 @@ struct BaoAnGongFisherApp: App {
         WindowGroup {
             ToxicFishListView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//            FishingLocationView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

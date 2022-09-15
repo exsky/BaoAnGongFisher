@@ -30,7 +30,7 @@ struct ToxicFishListView: View {
                 Image(systemName: "xmark.shield.fill")
                 Text("危險魚類")
             }
-            Text("Location")
+            FishingLocationView()
             .tabItem {
                 Image(systemName: "map.fill")
                 Text("私藏釣點")
