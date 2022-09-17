@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import CoreLocationUI
 
 struct FishingLocationView: View {
     var body: some View {
@@ -20,18 +21,21 @@ struct FishingLocationView: View {
 }
 
 struct MapView: View {
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(
-            latitude: 25.1125,
-            longitude: 121.4582),
-        span: MKCoordinateSpan(
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005)
-        )
-
+    @StateObject private var viewModel = FishingLocationModel()
     var body: some View {
-        Map(coordinateRegion: $region)
-            .edgesIgnoringSafeArea(.all)
+        ZStack(alignment: .topTrailing) {
+            Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
+                .edgesIgnoringSafeArea(.all)
+                .tint(.green)
+            LocationButton(.currentLocation) {
+                viewModel.requestAllowOnceLocationPermission()
+            }
+            .foregroundColor(.white)
+            .cornerRadius(15)
+            .labelStyle(.iconOnly)
+            .symbolVariant(.fill)
+            .padding(10)
+        }
     }
 }
 
@@ -41,5 +45,40 @@ struct FishingLocationView_Previews: PreviewProvider {
         FishingLocationView()
         FishingLocationView()
             .preferredColorScheme(.dark)
+    }
+}
+
+
+final class FishingLocationModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    @Published var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 25.1125, longitude: 121.4582),
+        span: MKCoordinateSpan(latitudeDelta: 0.008, longitudeDelta: 0.008))
+
+    let locationManager = CLLocationManager()
+
+    override init() {
+        super.init()
+        locationManager.delegate = self
+    }
+
+    func requestAllowOnceLocationPermission() {
+        locationManager.requestLocation()
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let latestLocation = locations.first else {
+            return
+        }
+
+        DispatchQueue.main.async {
+            self.region = MKCoordinateRegion(
+                center: latestLocation.coordinate,
+                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            print("Region --> \(self.region)")
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
 }
