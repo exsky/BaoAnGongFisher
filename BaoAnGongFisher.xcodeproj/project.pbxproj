@@ -17,6 +17,7 @@
 		C04029FD28C84E5A00F83CD9 /* BaoAnGongFisherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029FC28C84E5A00F83CD9 /* BaoAnGongFisherUITests.swift */; };
 		C04029FF28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029FE28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift */; };
 		C0A4FC5228D212AA00DACE2E /* FishingLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A4FC5128D212AA00DACE2E /* FishingLocationView.swift */; };
+		C0C3BBD928D9EAB000721EB9 /* SecretLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */; };
 		C0FFBFE928CAC5FC00E2202C /* ToxicFish.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,8 @@
 		C04029FC28C84E5A00F83CD9 /* BaoAnGongFisherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaoAnGongFisherUITests.swift; sourceTree = "<group>"; };
 		C04029FE28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaoAnGongFisherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C0A4FC5128D212AA00DACE2E /* FishingLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingLocationView.swift; sourceTree = "<group>"; };
+		C0C3BBD728D77FE000721EB9 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretLocation.swift; sourceTree = "<group>"; };
 		C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToxicFish.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +89,7 @@
 				C04029F128C84E5A00F83CD9 /* BaoAnGongFisherTests */,
 				C04029FB28C84E5A00F83CD9 /* BaoAnGongFisherUITests */,
 				C04029DA28C84E5900F83CD9 /* Products */,
+				C0C3BBD628D77FDF00721EB9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,12 +108,13 @@
 			children = (
 				C04029DC28C84E5900F83CD9 /* BaoAnGongFisherApp.swift */,
 				C04029DE28C84E5900F83CD9 /* ToxicFishListView.swift */,
+				C0A4FC5128D212AA00DACE2E /* FishingLocationView.swift */,
 				C04029E028C84E5A00F83CD9 /* Assets.xcassets */,
 				C04029E528C84E5A00F83CD9 /* Persistence.swift */,
 				C04029E728C84E5A00F83CD9 /* BaoAnGongFisher.xcdatamodeld */,
 				C04029E228C84E5A00F83CD9 /* Preview Content */,
 				C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */,
-				C0A4FC5128D212AA00DACE2E /* FishingLocationView.swift */,
+				C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */,
 			);
 			path = BaoAnGongFisher;
 			sourceTree = "<group>";
@@ -137,6 +142,14 @@
 				C04029FE28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift */,
 			);
 			path = BaoAnGongFisherUITests;
+			sourceTree = "<group>";
+		};
+		C0C3BBD628D77FDF00721EB9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0C3BBD728D77FE000721EB9 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +287,7 @@
 				C0FFBFE928CAC5FC00E2202C /* ToxicFish.swift in Sources */,
 				C04029DF28C84E5900F83CD9 /* ToxicFishListView.swift in Sources */,
 				C0A4FC5228D212AA00DACE2E /* FishingLocationView.swift in Sources */,
+				C0C3BBD928D9EAB000721EB9 /* SecretLocation.swift in Sources */,
 				C04029DD28C84E5900F83CD9 /* BaoAnGongFisherApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
