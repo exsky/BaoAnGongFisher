@@ -26,13 +26,20 @@ struct MapView: View {
     @State private var isLongPressed = false
     @StateObject private var viewModel = FishingLocationModel()
     @State private var SecretLocations = SecretLocationsData
+    // 記錄長按位置所需要的變數
+    // @State var longPressLocation = CGPoint.zero
+    @State private var customLocation = ScreenLocation(latitude: 0, longitude: 0)
+    @State private var addLocationAlertIsPresented: Bool = false
+    @State private var newSecretLocationName: String = "私房釣點"
+    @State private var storeNewLocation: Bool = false
 
     var body: some View {
-        ZStack(alignment: .topTrailing) {
-            Map(coordinateRegion: $viewModel.region,
-                showsUserLocation: true,
-                annotationItems: SecretLocations) { item in
-                    // MapMarker(coordinate: item.coordinate, tint: .red)
+        ZStack(alignment: .center) {
+            GeometryReader { geometry in    // 在地圖外圍套一層 幾何圖形讀取器
+                Map(coordinateRegion: $viewModel.region,
+                    showsUserLocation: true,
+                    annotationItems: SecretLocations) { item in
+                    // update annotation
                     MapAnnotation(coordinate: item.coordinate) {
                         Text(item.name)
                             .fontWeight(.light)
@@ -66,32 +73,51 @@ struct MapView: View {
                                 .foregroundColor(.gray)
                                 .background(Color.white)
                                 .clipShape(Circle())
-                        }
-                    }
-                }
+                        }   // switch end
+                    }   // ManAnnotation end
+                }   // annotationItems
                 .edgesIgnoringSafeArea(.all)
                 .gesture(DragGesture())
-                .onLongPressGesture {
-                    isLongPressed.toggle()
-                }.actionSheet(isPresented: $isLongPressed) {
-                    ActionSheet(title: Text("新增私房釣點嗎？"),
-                                message: nil,
-                                buttons: [
-                                    .default(Text("新增釣點")) {
-                                        // Yes
-                                    },
-                                    .cancel()
-                                ])
-                }
-            LocationButton(.currentLocation) {
-                viewModel.requestAllowOnceLocationPermission()
             }
-            .foregroundColor(.white)
-            .cornerRadius(15)
-            .labelStyle(.iconOnly)
-            .symbolVariant(.fill)
-            .padding(10)
+            VStack(alignment: .trailing) {
+                HStack {
+                    Spacer()
+                    LocationButton(.currentLocation) {
+                        viewModel.requestAllowOnceLocationPermission()
+                    }
+                    .foregroundColor(.white)
+                    .cornerRadius(15)
+                    .labelStyle(.iconOnly)
+                    .symbolVariant(.fill)
+                    .padding(10)
+                }
+                HStack {
+                    Spacer()
+                    Button(action: newSecretLocation) {
+                        Label("", systemImage: "plus.rectangle.on.folder.fill")
+                        .labelStyle(.iconOnly)
+                        .frame(width: 40, height:40)
+                        .foregroundColor(.white)
+                        .background(Color.green)
+                        .cornerRadius(15)
+                        .padding(10)
+                    }
+                }
+                Spacer()
+            }
+            VStack(alignment: .center) {
+                Image(systemName: "plus")
+                    .foregroundColor(.black)
+            }
+            AddPinAlert(alertIsPresented: $addLocationAlertIsPresented,
+                        myLocationName: $newSecretLocationName,
+                        currentRegion: $viewModel.region,
+                        pinsData: $SecretLocations)
         }
+    }
+
+    func newSecretLocation() {
+        self.addLocationAlertIsPresented = true
     }
 }
 

@@ -18,6 +18,7 @@
 		C04029FF28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029FE28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift */; };
 		C0A4FC5228D212AA00DACE2E /* FishingLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A4FC5128D212AA00DACE2E /* FishingLocationView.swift */; };
 		C0C3BBD928D9EAB000721EB9 /* SecretLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */; };
+		C0C3BBDB28DCACF100721EB9 /* AddPinAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */; };
 		C0FFBFE928CAC5FC00E2202C /* ToxicFish.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		C0A4FC5128D212AA00DACE2E /* FishingLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingLocationView.swift; sourceTree = "<group>"; };
 		C0C3BBD728D77FE000721EB9 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretLocation.swift; sourceTree = "<group>"; };
+		C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPinAlert.swift; sourceTree = "<group>"; };
 		C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToxicFish.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 				C04029E228C84E5A00F83CD9 /* Preview Content */,
 				C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */,
 				C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */,
+				C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */,
 			);
 			path = BaoAnGongFisher;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				C04029E928C84E5A00F83CD9 /* BaoAnGongFisher.xcdatamodeld in Sources */,
 				C0FFBFE928CAC5FC00E2202C /* ToxicFish.swift in Sources */,
 				C04029DF28C84E5900F83CD9 /* ToxicFishListView.swift in Sources */,
+				C0C3BBDB28DCACF100721EB9 /* AddPinAlert.swift in Sources */,
 				C0A4FC5228D212AA00DACE2E /* FishingLocationView.swift in Sources */,
 				C0C3BBD928D9EAB000721EB9 /* SecretLocation.swift in Sources */,
 				C04029DD28C84E5900F83CD9 /* BaoAnGongFisherApp.swift in Sources */,

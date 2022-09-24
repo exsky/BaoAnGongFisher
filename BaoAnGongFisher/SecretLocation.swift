@@ -8,6 +8,23 @@
 import Foundation
 import CoreLocation
 
+struct ScreenLocation: Identifiable {
+    let id = UUID()
+    var coordinate: CLLocationCoordinate2D
+
+    init(latitude: Double, longitude: Double) {
+        self.coordinate = CLLocationCoordinate2D(latitude:latitude, longitude:longitude)
+    }
+
+    init(coordinate: CLLocationCoordinate2D) {
+        self.coordinate = coordinate
+    }
+
+    init() {
+        self.coordinate = CLLocationCoordinate2D(latitude:0, longitude:0)
+    }
+}
+
 struct PinLocation: Identifiable {
     let id = UUID()
     var name: String
