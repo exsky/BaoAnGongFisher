@@ -15,7 +15,8 @@ struct AddPinAlert: View {
     @Binding var alertIsPresented: Bool
     @Binding var myLocationName: String
     @Binding var currentRegion: MKCoordinateRegion
-    @Binding var pinsData: [PinLocation]
+    // @Binding var pinsData: [PinLocation]
+    @Binding var locationLoader: LocationsLoader
     @State var myLocationRank: Int = 3
     var boxTitle: String = "在十字記號下新增私房釣點？"
 
@@ -34,8 +35,8 @@ struct AddPinAlert: View {
             Spacer()
             HStack (alignment: .center){
                 Spacer()
-                Button("好") {
-                    print(currentRegion)
+                Button("完成") {
+                    // print(currentRegion)
                     saveLocation()
                     self.alertIsPresented = false
                 }
@@ -54,13 +55,16 @@ struct AddPinAlert: View {
         .offset(y: alertIsPresented ? screenSize.height * 0.2 : screenSize.height)
     }
 
+    // TODO: save the new data in file
     func saveLocation() {
-        self.pinsData.append(
+        //self.pinsData.append(
+        self.locationLoader.locationData.append(
             PinLocation(name: myLocationName, image:"",
                         coordinate: CLLocationCoordinate2D(latitude: currentRegion.center.latitude,
                                                            longitude: currentRegion.center.longitude),
                         rank: myLocationRank)
         )
+        locationLoader.saveDataToFile()
     }
 }
 
@@ -73,7 +77,8 @@ struct AddPinAlert_Previews: PreviewProvider {
                             center: CLLocationCoordinate2D(latitude: 25.144274, longitude: 121.381837),
                             span: MKCoordinateSpan(latitudeDelta: 0.08, longitudeDelta: 0.08))
                         ),
-                    pinsData: .constant(SecretLocationsData)
+                    locationLoader: .constant(LocationsLoader())
+//                    pinsData: .constant(SecretLocationsData)
         )
     }
 }

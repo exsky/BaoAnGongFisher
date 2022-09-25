@@ -25,9 +25,7 @@ struct MapView: View {
     // 用來記錄長按手勢是否被觸發
     @State private var isLongPressed = false
     @StateObject private var viewModel = FishingLocationModel()
-    @State private var SecretLocations = SecretLocationsData
-    // 記錄長按位置所需要的變數
-    // @State var longPressLocation = CGPoint.zero
+    @State private var myLocationLoader = LocationsLoader()
     @State private var customLocation = ScreenLocation(latitude: 0, longitude: 0)
     @State private var addLocationAlertIsPresented: Bool = false
     @State private var newSecretLocationName: String = "私房釣點"
@@ -38,7 +36,7 @@ struct MapView: View {
             GeometryReader { geometry in    // 在地圖外圍套一層 幾何圖形讀取器
                 Map(coordinateRegion: $viewModel.region,
                     showsUserLocation: true,
-                    annotationItems: SecretLocations) { item in
+                    annotationItems: myLocationLoader.locationData) { item in
                     // update annotation
                     MapAnnotation(coordinate: item.coordinate) {
                         Text(item.name)
@@ -112,7 +110,8 @@ struct MapView: View {
             AddPinAlert(alertIsPresented: $addLocationAlertIsPresented,
                         myLocationName: $newSecretLocationName,
                         currentRegion: $viewModel.region,
-                        pinsData: $SecretLocations)
+                        locationLoader: $myLocationLoader)
+                        //pinsData: $myLocationLoader.locationData)
         }
     }
 
@@ -156,7 +155,7 @@ final class FishingLocationModel: NSObject, ObservableObject, CLLocationManagerD
             self.region = MKCoordinateRegion(
                 center: latestLocation.coordinate,
                 span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-            print("Region --> \(self.region)")
+            // print("Region --> \(self.region)")
         }
     }
 

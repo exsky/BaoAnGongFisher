@@ -17,6 +17,8 @@
 		C04029FD28C84E5A00F83CD9 /* BaoAnGongFisherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029FC28C84E5A00F83CD9 /* BaoAnGongFisherUITests.swift */; };
 		C04029FF28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029FE28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift */; };
 		C0A4FC5228D212AA00DACE2E /* FishingLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A4FC5128D212AA00DACE2E /* FishingLocationView.swift */; };
+		C0A8F3B528DF531C00CDCFE2 /* MySecretLocations.json in Resources */ = {isa = PBXBuildFile; fileRef = C0A8F3B428DF531C00CDCFE2 /* MySecretLocations.json */; };
+		C0A8F3B928DF558400CDCFE2 /* SecretLocationsDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A8F3B828DF558400CDCFE2 /* SecretLocationsDataLoader.swift */; };
 		C0C3BBD928D9EAB000721EB9 /* SecretLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */; };
 		C0C3BBDB28DCACF100721EB9 /* AddPinAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */; };
 		C0FFBFE928CAC5FC00E2202C /* ToxicFish.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */; };
@@ -53,6 +55,8 @@
 		C04029FC28C84E5A00F83CD9 /* BaoAnGongFisherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaoAnGongFisherUITests.swift; sourceTree = "<group>"; };
 		C04029FE28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaoAnGongFisherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C0A4FC5128D212AA00DACE2E /* FishingLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingLocationView.swift; sourceTree = "<group>"; };
+		C0A8F3B428DF531C00CDCFE2 /* MySecretLocations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MySecretLocations.json; path = ../../../../Downloads/MySecretLocations.json; sourceTree = "<group>"; };
+		C0A8F3B828DF558400CDCFE2 /* SecretLocationsDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretLocationsDataLoader.swift; sourceTree = "<group>"; };
 		C0C3BBD728D77FE000721EB9 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretLocation.swift; sourceTree = "<group>"; };
 		C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPinAlert.swift; sourceTree = "<group>"; };
@@ -108,16 +112,18 @@
 		C04029DB28C84E5900F83CD9 /* BaoAnGongFisher */ = {
 			isa = PBXGroup;
 			children = (
+				C0A8F3B428DF531C00CDCFE2 /* MySecretLocations.json */,
 				C04029DC28C84E5900F83CD9 /* BaoAnGongFisherApp.swift */,
+				C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */,
 				C04029DE28C84E5900F83CD9 /* ToxicFishListView.swift */,
+				C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */,
+				C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */,
 				C0A4FC5128D212AA00DACE2E /* FishingLocationView.swift */,
 				C04029E028C84E5A00F83CD9 /* Assets.xcassets */,
 				C04029E528C84E5A00F83CD9 /* Persistence.swift */,
 				C04029E728C84E5A00F83CD9 /* BaoAnGongFisher.xcdatamodeld */,
 				C04029E228C84E5A00F83CD9 /* Preview Content */,
-				C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */,
-				C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */,
-				C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */,
+				C0A8F3B828DF558400CDCFE2 /* SecretLocationsDataLoader.swift */,
 			);
 			path = BaoAnGongFisher;
 			sourceTree = "<group>";
@@ -260,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C04029E428C84E5A00F83CD9 /* Preview Assets.xcassets in Resources */,
+				C0A8F3B528DF531C00CDCFE2 /* MySecretLocations.json in Resources */,
 				C04029E128C84E5A00F83CD9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +299,7 @@
 				C0C3BBDB28DCACF100721EB9 /* AddPinAlert.swift in Sources */,
 				C0A4FC5228D212AA00DACE2E /* FishingLocationView.swift in Sources */,
 				C0C3BBD928D9EAB000721EB9 /* SecretLocation.swift in Sources */,
+				C0A8F3B928DF558400CDCFE2 /* SecretLocationsDataLoader.swift in Sources */,
 				C04029DD28C84E5900F83CD9 /* BaoAnGongFisherApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BaoAnGongFisher/Preview Content\"";
@@ -468,6 +477,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nipapa.tw.BaoAnGongFisher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -479,6 +489,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BaoAnGongFisher/Preview Content\"";
@@ -499,6 +510,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nipapa.tw.BaoAnGongFisher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
