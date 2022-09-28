@@ -65,6 +65,7 @@ struct AddPinAlert: View {
                         rank: myLocationRank)
         )
         locationLoader.saveDataToFile()
+        locationLoader.loadDataFromFile()
     }
 }
 

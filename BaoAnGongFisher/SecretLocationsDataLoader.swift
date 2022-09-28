@@ -18,18 +18,35 @@ public class LocationsLoader {
         transferCoordinate()
     }
 
+    private func documentDir() -> String {
+        let dir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        return dir[0] as String
+    }
+
     func loadDataFromFile() {
+        let manager = FileManager()
+        let docDir = self.documentDir()
+        let filePath = docDir.appendingFormat("/saved/NewSecretLocations.json")
 
-        if let myLocationFile = Bundle.main.url(forResource: "MySecretLocations", withExtension: "json") {
-
-            // 如果上面的 if let statement 不成立則不執行
+        if manager.fileExists(atPath: filePath) { //  先前存檔過，就從存檔紀錄讀資料
             do {
-                let data = try Data(contentsOf: myLocationFile)
+                let data = try Data(contentsOf: URL(string: "file://\(filePath)")!)
                 let jsonDecoder = JSONDecoder()
                 let dataFromJson = try jsonDecoder.decode([FishPinAnnotation].self, from: data)
                 self.originLoadData = dataFromJson
             } catch {
                 print(error)
+            }
+        } else {
+            if let myLocationFile = Bundle.main.url(forResource: "MySecretLocations", withExtension: "json") {
+                do {
+                    let data = try Data(contentsOf: myLocationFile)
+                    let jsonDecoder = JSONDecoder()
+                    let dataFromJson = try jsonDecoder.decode([FishPinAnnotation].self, from: data)
+                    self.originLoadData = dataFromJson
+                } catch {
+                    print(error)
+                }
             }
         }
     }
@@ -91,6 +108,15 @@ public class LocationsLoader {
         } catch {
             print(error)
         }
+//        //--
+//        guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+//            return
+//        }
+//        let savedFolderUrl = url.appendingPathComponent("saved")
+//        //let fileUrl = savedFolderUrl.appendingPathComponent("NewSecretLocations.json")
+//        if manager.fileExists(atPath: fileUrl.absoluteString) { //  先前存檔過，就從存檔紀錄讀資料
+//            print("Save File > exist!!")
+//        } // --
     }
     
     func copyFileFromBundleToDocumentsFolder(sourceFile: String, destinationFile: String = "") {
