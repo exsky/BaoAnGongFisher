@@ -7,7 +7,25 @@
 		<key>BaoAnGongFisher.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>20</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>C04029D828C84E5900F83CD9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C04029ED28C84E5A00F83CD9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C04029F728C84E5A00F83CD9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

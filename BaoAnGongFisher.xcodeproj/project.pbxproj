@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F50432012FA4822B37A8622 /* Pods_BaoAnGongFisherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5A667F3DBABEA2B4B80978 /* Pods_BaoAnGongFisherTests.framework */; };
+		476B86A75FD7FF3185D6BD82 /* MemberLevelEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A922BFD5177E71D109625352 /* MemberLevelEnum.swift */; };
+		4A6D0B3D65875C8FDDB11F24 /* Pods_BaoAnGongFisher_BaoAnGongFisherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BAE7C826E2A9382CE9C77EA /* Pods_BaoAnGongFisher_BaoAnGongFisherUITests.framework */; };
+		59B4F045D29A020C08FAB73C /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD37FFC41C30DBDE176E83 /* AmplifyModels.swift */; };
+		6957D59F99086A478C1B3B21 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 2975FF76549BF7966A4E65BB /* amplifyconfiguration.json */; };
+		6E758E1D6ABB71ABBE37C90A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C21331CCD270D3DBE1A083D /* User.swift */; };
+		728A39E059B92D90C00B8B85 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 1209FED1B8FACAAD71D4D963 /* awsconfiguration.json */; };
+		85A8B805D195745AFCEBA97D /* Pods_BaoAnGongFisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBF69B71642DA6D691A6B31 /* Pods_BaoAnGongFisher.framework */; };
+		C03C80FC28EB4AB400CD3719 /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = C03C80FB28EB4AB400CD3719 /* AWSAPIPlugin */; };
+		C03C80FE28EB4AB400CD3719 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = C03C80FD28EB4AB400CD3719 /* AWSCognitoAuthPlugin */; };
+		C03C810028EB4AB400CD3719 /* AWSDataStorePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = C03C80FF28EB4AB400CD3719 /* AWSDataStorePlugin */; };
+		C03C810228EB4AB400CD3719 /* AWSPluginsCore in Frameworks */ = {isa = PBXBuildFile; productRef = C03C810128EB4AB400CD3719 /* AWSPluginsCore */; };
+		C03C810428EB4AB400CD3719 /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = C03C810328EB4AB400CD3719 /* AWSS3StoragePlugin */; };
+		C03C810628EB4AB400CD3719 /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = C03C810528EB4AB400CD3719 /* Amplify */; };
 		C04029DD28C84E5900F83CD9 /* BaoAnGongFisherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029DC28C84E5900F83CD9 /* BaoAnGongFisherApp.swift */; };
 		C04029DF28C84E5900F83CD9 /* ToxicFishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029DE28C84E5900F83CD9 /* ToxicFishListView.swift */; };
 		C04029E128C84E5A00F83CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C04029E028C84E5A00F83CD9 /* Assets.xcassets */; };
@@ -16,12 +30,14 @@
 		C04029F328C84E5A00F83CD9 /* BaoAnGongFisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029F228C84E5A00F83CD9 /* BaoAnGongFisherTests.swift */; };
 		C04029FD28C84E5A00F83CD9 /* BaoAnGongFisherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029FC28C84E5A00F83CD9 /* BaoAnGongFisherUITests.swift */; };
 		C04029FF28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04029FE28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift */; };
+		C040409328E86CC8004CA513 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C040409228E86CC8004CA513 /* AuthView.swift */; };
 		C0A4FC5228D212AA00DACE2E /* FishingLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A4FC5128D212AA00DACE2E /* FishingLocationView.swift */; };
 		C0A8F3B528DF531C00CDCFE2 /* MySecretLocations.json in Resources */ = {isa = PBXBuildFile; fileRef = C0A8F3B428DF531C00CDCFE2 /* MySecretLocations.json */; };
 		C0A8F3B928DF558400CDCFE2 /* SecretLocationsDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A8F3B828DF558400CDCFE2 /* SecretLocationsDataLoader.swift */; };
 		C0C3BBD928D9EAB000721EB9 /* SecretLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */; };
 		C0C3BBDB28DCACF100721EB9 /* AddPinAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */; };
 		C0FFBFE928CAC5FC00E2202C /* ToxicFish.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */; };
+		D3F515E42F7741D388700C29 /* User+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5306F7D2CC7DCC46823D9898 /* User+Schema.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +58,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00CD37FFC41C30DBDE176E83 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
+		0D5A667F3DBABEA2B4B80978 /* Pods_BaoAnGongFisherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaoAnGongFisherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FCC3FFCBAB8CAEAD2B81ABB /* Pods-BaoAnGongFisher-BaoAnGongFisherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaoAnGongFisher-BaoAnGongFisherUITests.release.xcconfig"; path = "Target Support Files/Pods-BaoAnGongFisher-BaoAnGongFisherUITests/Pods-BaoAnGongFisher-BaoAnGongFisherUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1209FED1B8FACAAD71D4D963 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		121D6F5BA9E2E087A1E890B2 /* Pods-BaoAnGongFisherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaoAnGongFisherTests.debug.xcconfig"; path = "Target Support Files/Pods-BaoAnGongFisherTests/Pods-BaoAnGongFisherTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2975FF76549BF7966A4E65BB /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		4476A058D5E512FF309696AC /* Pods-BaoAnGongFisherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaoAnGongFisherTests.release.xcconfig"; path = "Target Support Files/Pods-BaoAnGongFisherTests/Pods-BaoAnGongFisherTests.release.xcconfig"; sourceTree = "<group>"; };
+		5306F7D2CC7DCC46823D9898 /* User+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; };
+		5BAE7C826E2A9382CE9C77EA /* Pods_BaoAnGongFisher_BaoAnGongFisherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaoAnGongFisher_BaoAnGongFisherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C21331CCD270D3DBE1A083D /* User.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = User.swift; path = amplify/generated/models/User.swift; sourceTree = "<group>"; };
+		9DD3A32A16304E6E7E00445C /* Pods-BaoAnGongFisher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaoAnGongFisher.debug.xcconfig"; path = "Target Support Files/Pods-BaoAnGongFisher/Pods-BaoAnGongFisher.debug.xcconfig"; sourceTree = "<group>"; };
+		A23508DFA17D1B5BAA2A5101 /* Pods-BaoAnGongFisher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaoAnGongFisher.release.xcconfig"; path = "Target Support Files/Pods-BaoAnGongFisher/Pods-BaoAnGongFisher.release.xcconfig"; sourceTree = "<group>"; };
+		A8F2B2BA875308AF2AEB85DD /* Pods-BaoAnGongFisher-BaoAnGongFisherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaoAnGongFisher-BaoAnGongFisherUITests.debug.xcconfig"; path = "Target Support Files/Pods-BaoAnGongFisher-BaoAnGongFisherUITests/Pods-BaoAnGongFisher-BaoAnGongFisherUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A922BFD5177E71D109625352 /* MemberLevelEnum.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = MemberLevelEnum.swift; path = amplify/generated/models/MemberLevelEnum.swift; sourceTree = "<group>"; };
 		C04029D928C84E5900F83CD9 /* BaoAnGongFisher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaoAnGongFisher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04029DC28C84E5900F83CD9 /* BaoAnGongFisherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaoAnGongFisherApp.swift; sourceTree = "<group>"; };
 		C04029DE28C84E5900F83CD9 /* ToxicFishListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToxicFishListView.swift; sourceTree = "<group>"; };
@@ -54,6 +84,7 @@
 		C04029F828C84E5A00F83CD9 /* BaoAnGongFisherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaoAnGongFisherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04029FC28C84E5A00F83CD9 /* BaoAnGongFisherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaoAnGongFisherUITests.swift; sourceTree = "<group>"; };
 		C04029FE28C84E5A00F83CD9 /* BaoAnGongFisherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaoAnGongFisherUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C040409228E86CC8004CA513 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		C0A4FC5128D212AA00DACE2E /* FishingLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishingLocationView.swift; sourceTree = "<group>"; };
 		C0A8F3B428DF531C00CDCFE2 /* MySecretLocations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MySecretLocations.json; path = ../../../../Downloads/MySecretLocations.json; sourceTree = "<group>"; };
 		C0A8F3B828DF558400CDCFE2 /* SecretLocationsDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretLocationsDataLoader.swift; sourceTree = "<group>"; };
@@ -61,6 +92,8 @@
 		C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretLocation.swift; sourceTree = "<group>"; };
 		C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPinAlert.swift; sourceTree = "<group>"; };
 		C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToxicFish.swift; sourceTree = "<group>"; };
+		DDBF69B71642DA6D691A6B31 /* Pods_BaoAnGongFisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaoAnGongFisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEDCBCA4D5713F5DE3E36C99 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = AmplifyModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +101,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C03C80FC28EB4AB400CD3719 /* AWSAPIPlugin in Frameworks */,
+				C03C810628EB4AB400CD3719 /* Amplify in Frameworks */,
+				85A8B805D195745AFCEBA97D /* Pods_BaoAnGongFisher.framework in Frameworks */,
+				C03C80FE28EB4AB400CD3719 /* AWSCognitoAuthPlugin in Frameworks */,
+				C03C810028EB4AB400CD3719 /* AWSDataStorePlugin in Frameworks */,
+				C03C810228EB4AB400CD3719 /* AWSPluginsCore in Frameworks */,
+				C03C810428EB4AB400CD3719 /* AWSS3StoragePlugin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F50432012FA4822B37A8622 /* Pods_BaoAnGongFisherTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,12 +123,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A6D0B3D65875C8FDDB11F24 /* Pods_BaoAnGongFisher_BaoAnGongFisherUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		69AB27D9E8D1CAE33A62F5EC /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				1209FED1B8FACAAD71D4D963 /* awsconfiguration.json */,
+				2975FF76549BF7966A4E65BB /* amplifyconfiguration.json */,
+			);
+			name = AmplifyConfig;
+			sourceTree = "<group>";
+		};
+		99FB3F4D893C179CD1625F92 /* AmplifyModels */ = {
+			isa = PBXGroup;
+			children = (
+				A922BFD5177E71D109625352 /* MemberLevelEnum.swift */,
+				5306F7D2CC7DCC46823D9898 /* User+Schema.swift */,
+				9C21331CCD270D3DBE1A083D /* User.swift */,
+				00CD37FFC41C30DBDE176E83 /* AmplifyModels.swift */,
+			);
+			name = AmplifyModels;
+			sourceTree = "<group>";
+		};
 		C04029D028C84E5900F83CD9 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +158,9 @@
 				C04029FB28C84E5A00F83CD9 /* BaoAnGongFisherUITests */,
 				C04029DA28C84E5900F83CD9 /* Products */,
 				C0C3BBD628D77FDF00721EB9 /* Frameworks */,
+				C61AA573E5C7965779A6C276 /* Pods */,
+				69AB27D9E8D1CAE33A62F5EC /* AmplifyConfig */,
+				99FB3F4D893C179CD1625F92 /* AmplifyModels */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,8 +177,8 @@
 		C04029DB28C84E5900F83CD9 /* BaoAnGongFisher */ = {
 			isa = PBXGroup;
 			children = (
-				C0A8F3B428DF531C00CDCFE2 /* MySecretLocations.json */,
 				C04029DC28C84E5900F83CD9 /* BaoAnGongFisherApp.swift */,
+				C0A8F3B428DF531C00CDCFE2 /* MySecretLocations.json */,
 				C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */,
 				C04029DE28C84E5900F83CD9 /* ToxicFishListView.swift */,
 				C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */,
@@ -124,6 +189,7 @@
 				C04029E728C84E5A00F83CD9 /* BaoAnGongFisher.xcdatamodeld */,
 				C04029E228C84E5A00F83CD9 /* Preview Content */,
 				C0A8F3B828DF558400CDCFE2 /* SecretLocationsDataLoader.swift */,
+				C040409228E86CC8004CA513 /* AuthView.swift */,
 			);
 			path = BaoAnGongFisher;
 			sourceTree = "<group>";
@@ -157,8 +223,25 @@
 			isa = PBXGroup;
 			children = (
 				C0C3BBD728D77FE000721EB9 /* libsqlite3.tbd */,
+				DDBF69B71642DA6D691A6B31 /* Pods_BaoAnGongFisher.framework */,
+				5BAE7C826E2A9382CE9C77EA /* Pods_BaoAnGongFisher_BaoAnGongFisherUITests.framework */,
+				0D5A667F3DBABEA2B4B80978 /* Pods_BaoAnGongFisherTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C61AA573E5C7965779A6C276 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FEDCBCA4D5713F5DE3E36C99 /* AmplifyModels.swift */,
+				9DD3A32A16304E6E7E00445C /* Pods-BaoAnGongFisher.debug.xcconfig */,
+				A23508DFA17D1B5BAA2A5101 /* Pods-BaoAnGongFisher.release.xcconfig */,
+				A8F2B2BA875308AF2AEB85DD /* Pods-BaoAnGongFisher-BaoAnGongFisherUITests.debug.xcconfig */,
+				0FCC3FFCBAB8CAEAD2B81ABB /* Pods-BaoAnGongFisher-BaoAnGongFisherUITests.release.xcconfig */,
+				121D6F5BA9E2E087A1E890B2 /* Pods-BaoAnGongFisherTests.debug.xcconfig */,
+				4476A058D5E512FF309696AC /* Pods-BaoAnGongFisherTests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,15 +251,25 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0402A0228C84E5A00F83CD9 /* Build configuration list for PBXNativeTarget "BaoAnGongFisher" */;
 			buildPhases = (
+				5A8E4A66FBE2E2ED0F52BEE2 /* [CP] Check Pods Manifest.lock */,
 				C04029D528C84E5900F83CD9 /* Sources */,
 				C04029D628C84E5900F83CD9 /* Frameworks */,
 				C04029D728C84E5900F83CD9 /* Resources */,
+				A23AA03F491E3E73C6E1C647 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = BaoAnGongFisher;
+			packageProductDependencies = (
+				C03C80FB28EB4AB400CD3719 /* AWSAPIPlugin */,
+				C03C80FD28EB4AB400CD3719 /* AWSCognitoAuthPlugin */,
+				C03C80FF28EB4AB400CD3719 /* AWSDataStorePlugin */,
+				C03C810128EB4AB400CD3719 /* AWSPluginsCore */,
+				C03C810328EB4AB400CD3719 /* AWSS3StoragePlugin */,
+				C03C810528EB4AB400CD3719 /* Amplify */,
+			);
 			productName = BaoAnGongFisher;
 			productReference = C04029D928C84E5900F83CD9 /* BaoAnGongFisher.app */;
 			productType = "com.apple.product-type.application";
@@ -185,6 +278,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0402A0528C84E5A00F83CD9 /* Build configuration list for PBXNativeTarget "BaoAnGongFisherTests" */;
 			buildPhases = (
+				BD456BD9A3F243880D4A8B64 /* [CP] Check Pods Manifest.lock */,
 				C04029EA28C84E5A00F83CD9 /* Sources */,
 				C04029EB28C84E5A00F83CD9 /* Frameworks */,
 				C04029EC28C84E5A00F83CD9 /* Resources */,
@@ -203,9 +297,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0402A0828C84E5A00F83CD9 /* Build configuration list for PBXNativeTarget "BaoAnGongFisherUITests" */;
 			buildPhases = (
+				797710563EE7EEDD200E7559 /* [CP] Check Pods Manifest.lock */,
 				C04029F428C84E5A00F83CD9 /* Sources */,
 				C04029F528C84E5A00F83CD9 /* Frameworks */,
 				C04029F628C84E5A00F83CD9 /* Resources */,
+				8833EC5AE79A5048E4FB00C4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -249,6 +345,9 @@
 				Base,
 			);
 			mainGroup = C04029D028C84E5900F83CD9;
+			packageReferences = (
+				C03C80FA28EB4AB400CD3719 /* XCRemoteSwiftPackageReference "amplify-ios" */,
+			);
 			productRefGroup = C04029DA28C84E5900F83CD9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -268,6 +367,8 @@
 				C04029E428C84E5A00F83CD9 /* Preview Assets.xcassets in Resources */,
 				C0A8F3B528DF531C00CDCFE2 /* MySecretLocations.json in Resources */,
 				C04029E128C84E5A00F83CD9 /* Assets.xcassets in Resources */,
+				728A39E059B92D90C00B8B85 /* awsconfiguration.json in Resources */,
+				6957D59F99086A478C1B3B21 /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,11 +388,114 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5A8E4A66FBE2E2ED0F52BEE2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BaoAnGongFisher-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		797710563EE7EEDD200E7559 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BaoAnGongFisher-BaoAnGongFisherUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8833EC5AE79A5048E4FB00C4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BaoAnGongFisher-BaoAnGongFisherUITests/Pods-BaoAnGongFisher-BaoAnGongFisherUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BaoAnGongFisher-BaoAnGongFisherUITests/Pods-BaoAnGongFisher-BaoAnGongFisherUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BaoAnGongFisher-BaoAnGongFisherUITests/Pods-BaoAnGongFisher-BaoAnGongFisherUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A23AA03F491E3E73C6E1C647 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BaoAnGongFisher/Pods-BaoAnGongFisher-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BaoAnGongFisher/Pods-BaoAnGongFisher-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD456BD9A3F243880D4A8B64 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BaoAnGongFisherTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C04029D528C84E5900F83CD9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C040409328E86CC8004CA513 /* AuthView.swift in Sources */,
 				C04029E628C84E5A00F83CD9 /* Persistence.swift in Sources */,
 				C04029E928C84E5A00F83CD9 /* BaoAnGongFisher.xcdatamodeld in Sources */,
 				C0FFBFE928CAC5FC00E2202C /* ToxicFish.swift in Sources */,
@@ -301,6 +505,10 @@
 				C0C3BBD928D9EAB000721EB9 /* SecretLocation.swift in Sources */,
 				C0A8F3B928DF558400CDCFE2 /* SecretLocationsDataLoader.swift in Sources */,
 				C04029DD28C84E5900F83CD9 /* BaoAnGongFisherApp.swift in Sources */,
+				476B86A75FD7FF3185D6BD82 /* MemberLevelEnum.swift in Sources */,
+				D3F515E42F7741D388700C29 /* User+Schema.swift in Sources */,
+				6E758E1D6ABB71ABBE37C90A /* User.swift in Sources */,
+				59B4F045D29A020C08FAB73C /* AmplifyModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +661,7 @@
 		};
 		C0402A0328C84E5A00F83CD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DD3A32A16304E6E7E00445C /* Pods-BaoAnGongFisher.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -486,6 +695,7 @@
 		};
 		C0402A0428C84E5A00F83CD9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A23508DFA17D1B5BAA2A5101 /* Pods-BaoAnGongFisher.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -519,6 +729,7 @@
 		};
 		C0402A0628C84E5A00F83CD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 121D6F5BA9E2E087A1E890B2 /* Pods-BaoAnGongFisherTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -539,6 +750,7 @@
 		};
 		C0402A0728C84E5A00F83CD9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4476A058D5E512FF309696AC /* Pods-BaoAnGongFisherTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -559,6 +771,7 @@
 		};
 		C0402A0928C84E5A00F83CD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8F2B2BA875308AF2AEB85DD /* Pods-BaoAnGongFisher-BaoAnGongFisherUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -577,6 +790,7 @@
 		};
 		C0402A0A28C84E5A00F83CD9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FCC3FFCBAB8CAEAD2B81ABB /* Pods-BaoAnGongFisher-BaoAnGongFisherUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -633,6 +847,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C03C80FA28EB4AB400CD3719 /* XCRemoteSwiftPackageReference "amplify-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/amplify-ios";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C03C80FB28EB4AB400CD3719 /* AWSAPIPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C03C80FA28EB4AB400CD3719 /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = AWSAPIPlugin;
+		};
+		C03C80FD28EB4AB400CD3719 /* AWSCognitoAuthPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C03C80FA28EB4AB400CD3719 /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = AWSCognitoAuthPlugin;
+		};
+		C03C80FF28EB4AB400CD3719 /* AWSDataStorePlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C03C80FA28EB4AB400CD3719 /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = AWSDataStorePlugin;
+		};
+		C03C810128EB4AB400CD3719 /* AWSPluginsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C03C80FA28EB4AB400CD3719 /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = AWSPluginsCore;
+		};
+		C03C810328EB4AB400CD3719 /* AWSS3StoragePlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C03C80FA28EB4AB400CD3719 /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = AWSS3StoragePlugin;
+		};
+		C03C810528EB4AB400CD3719 /* Amplify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C03C80FA28EB4AB400CD3719 /* XCRemoteSwiftPackageReference "amplify-ios" */;
+			productName = Amplify;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C04029E728C84E5A00F83CD9 /* BaoAnGongFisher.xcdatamodeld */ = {
