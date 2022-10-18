@@ -12,29 +12,18 @@ struct ToxicFishListView: View {
     var toxicfishes = toxicFishesData
     
     var body: some View {
-        TabView {
-            NavigationView {
-                // 加一層 ScrollView
-                ScrollView(.vertical) {
-                    LazyVStack(alignment: .center) {
-                        ForEach(fishCates, id: \.self) { fishCate in
-                            FishCategoryView(
-                                fishCate: fishCate,
-                                toxicfishes: toxicfishes)
-                        }
+        NavigationView {
+            // 加一層 ScrollView
+            ScrollView(.vertical) {
+                LazyVStack(alignment: .center) {
+                    ForEach(fishCates, id: \.self) { fishCate in
+                        FishCategoryView(
+                            fishCate: fishCate,
+                            toxicfishes: toxicfishes)
                     }
                 }
-                .navigationBarTitle(Text("危險魚類圖鑑"), displayMode: .inline)
             }
-            .tabItem {
-                Image(systemName: "xmark.shield.fill")
-                Text("危險魚類")
-            }
-            FishingLocationView()
-            .tabItem {
-                Image(systemName: "map.fill")
-                Text("私藏釣點")
-            }
+            .navigationBarTitle(Text("危險魚類圖鑑"), displayMode: .inline)
         }
     }
 }

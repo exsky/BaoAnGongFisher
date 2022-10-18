@@ -20,9 +20,12 @@ struct BaoAnGongFisherApp: App {
     var body: some Scene {
         WindowGroup {
             if showSignPage {
-                AuthView(showSignPage: $showSignPage)
+                //AuthView(showSignPage: $showSignPage)
+                MainListView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
             } else {
-                ToxicFishListView()
+                //ToxicFishListView()
+                MainListView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }
         }

@@ -40,10 +40,12 @@ struct AddPinAlert: View {
                     saveLocation()
                     self.alertIsPresented = false
                 }
+                .foregroundColor(Color(red: 1.0, green: 1.0, blue: 0.0))
                 Spacer()
                 Button("取消") {
                     self.alertIsPresented = false
                 }
+                .foregroundColor(Color(red: 1.0, green: 0.0, blue: 0.0))
                 Spacer()
             }
         }
