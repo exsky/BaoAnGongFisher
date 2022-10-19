@@ -25,9 +25,10 @@ struct MapView: View {
     // 用來記錄長按手勢是否被觸發
     @State private var isLongPressed = false
     @StateObject private var viewModel = FishingLocationModel()
-    @State private var myLocationLoader = LocationsLoader()
+    @State private var myLocationLoader = LocationLoader()
     @State private var customLocation = ScreenLocation(latitude: 0, longitude: 0)
     @State private var addLocationAlertIsPresented: Bool = false
+    @State private var delLocationListIsPresented: Bool = false
     @State private var newSecretLocationName: String = "私房釣點"
     @State private var storeNewLocation: Bool = false
 
@@ -89,7 +90,7 @@ struct MapView: View {
                     .symbolVariant(.fill)
                     .padding(10)
                 }
-                HStack {
+                HStack {    // 新增釣點
                     Spacer()
                     Button(action: newSecretLocation) {
                         Label("", systemImage: "plus.rectangle.on.folder.fill")
@@ -97,6 +98,18 @@ struct MapView: View {
                         .frame(width: 40, height:40)
                         .foregroundColor(.white)
                         .background(Color.green)
+                        .cornerRadius(15)
+                        .padding(10)
+                    }
+                }
+                HStack {    // 刪除釣點
+                    Spacer()
+                    Button(action: delSecretLocation) {
+                        Label("", systemImage: "bin.xmark.fill")
+                        .labelStyle(.iconOnly)
+                        .frame(width: 40, height:40)
+                        .foregroundColor(.white)
+                        .background(Color.red)
                         .cornerRadius(15)
                         .padding(10)
                     }
@@ -112,11 +125,17 @@ struct MapView: View {
                         currentRegion: $viewModel.region,
                         locationLoader: $myLocationLoader)
                         //pinsData: $myLocationLoader.locationData)
+            DelPinAlert(alertIsPresented: $delLocationListIsPresented,
+                        locationLoader: $myLocationLoader)
         }
     }
 
     func newSecretLocation() {
-        self.addLocationAlertIsPresented = true
+        self.addLocationAlertIsPresented.toggle()
+    }
+    
+    func delSecretLocation() {
+        self.delLocationListIsPresented.toggle()
     }
 }
 

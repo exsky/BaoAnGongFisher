@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-public class LocationsLoader {
+public class LocationLoader {
 
     @Published var originLoadData = [FishPinAnnotation]()
     @Published var locationData = [PinLocation]()
@@ -51,6 +51,8 @@ public class LocationsLoader {
         }
     }
 
+    // 將 FishPinAnnotation 轉換後加入 locationData
+    // 為了讀入檔案所製作
     func transferCoordinate() {    // 將目前程式使用中的圖釘清單內新增轉換後的資料
         for pin in self.originLoadData {
             self.locationData.append(
@@ -63,6 +65,8 @@ public class LocationsLoader {
         }
     }
     
+    // 以 locationData 生成新的 [FishPinAnnotation]
+    // 這是為了提供給寫檔案時使用
     func encodeCoordinate() -> [FishPinAnnotation] {
         var retPins: [FishPinAnnotation] = []
         for pin in self.locationData {
@@ -108,15 +112,6 @@ public class LocationsLoader {
         } catch {
             print(error)
         }
-//        //--
-//        guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {
-//            return
-//        }
-//        let savedFolderUrl = url.appendingPathComponent("saved")
-//        //let fileUrl = savedFolderUrl.appendingPathComponent("NewSecretLocations.json")
-//        if manager.fileExists(atPath: fileUrl.absoluteString) { //  先前存檔過，就從存檔紀錄讀資料
-//            print("Save File > exist!!")
-//        } // --
     }
     
     func copyFileFromBundleToDocumentsFolder(sourceFile: String, destinationFile: String = "") {
@@ -146,6 +141,11 @@ public class LocationsLoader {
 
     func getLocations () -> [PinLocation] {
         return self.locationData
+    }
+    
+    func saveAndReloadLocation() {
+        self.saveDataToFile()
+        self.loadDataFromFile()
     }
 }
 

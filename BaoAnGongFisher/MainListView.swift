@@ -27,6 +27,7 @@ struct MainListView: View {
                     Text("私藏釣點")
                 }
         }
+        .accentColor(.pink)
     }
 }
 

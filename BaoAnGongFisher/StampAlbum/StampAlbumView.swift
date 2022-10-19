@@ -12,7 +12,7 @@ struct StampAlbumView: View {
     private let colors: [Color] = [
         .red, .blue, .green, .yellow, .pink, .cyan, .indigo]
     // The photo and event state
-    // @State private var newStampPhoto = UIImage(systemName: "camera")!
+    @State private var addStampAlertIsPresented: Bool = false
     @State private var newStampPhoto = UIImage()
     @State private var showPhotoOptions = false
     @State private var photoSource: PhotoSource?

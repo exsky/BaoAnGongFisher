@@ -16,6 +16,8 @@
 		728A39E059B92D90C00B8B85 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 1209FED1B8FACAAD71D4D963 /* awsconfiguration.json */; };
 		85A8B805D195745AFCEBA97D /* Pods_BaoAnGongFisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBF69B71642DA6D691A6B31 /* Pods_BaoAnGongFisher.framework */; };
 		C02A155828FE5869002C3F01 /* MySecretLocations.json in Resources */ = {isa = PBXBuildFile; fileRef = C02A155728FE5869002C3F01 /* MySecretLocations.json */; };
+		C02A155A28FE8AE2002C3F01 /* AddStampAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A155928FE8AE2002C3F01 /* AddStampAlert.swift */; };
+		C02A155C28FE95CB002C3F01 /* DelPinAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A155B28FE95CB002C3F01 /* DelPinAlert.swift */; };
 		C03C80FC28EB4AB400CD3719 /* AWSAPIPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = C03C80FB28EB4AB400CD3719 /* AWSAPIPlugin */; };
 		C03C80FE28EB4AB400CD3719 /* AWSCognitoAuthPlugin in Frameworks */ = {isa = PBXBuildFile; productRef = C03C80FD28EB4AB400CD3719 /* AWSCognitoAuthPlugin */; };
 		C03C810028EB4AB400CD3719 /* AWSDataStorePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = C03C80FF28EB4AB400CD3719 /* AWSDataStorePlugin */; };
@@ -76,6 +78,8 @@
 		A8F2B2BA875308AF2AEB85DD /* Pods-BaoAnGongFisher-BaoAnGongFisherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaoAnGongFisher-BaoAnGongFisherUITests.debug.xcconfig"; path = "Target Support Files/Pods-BaoAnGongFisher-BaoAnGongFisherUITests/Pods-BaoAnGongFisher-BaoAnGongFisherUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A922BFD5177E71D109625352 /* MemberLevelEnum.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = MemberLevelEnum.swift; path = amplify/generated/models/MemberLevelEnum.swift; sourceTree = "<group>"; };
 		C02A155728FE5869002C3F01 /* MySecretLocations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MySecretLocations.json; sourceTree = "<group>"; };
+		C02A155928FE8AE2002C3F01 /* AddStampAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStampAlert.swift; sourceTree = "<group>"; };
+		C02A155B28FE95CB002C3F01 /* DelPinAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelPinAlert.swift; sourceTree = "<group>"; };
 		C04029D928C84E5900F83CD9 /* BaoAnGongFisher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaoAnGongFisher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04029DC28C84E5900F83CD9 /* BaoAnGongFisherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaoAnGongFisherApp.swift; sourceTree = "<group>"; };
 		C04029DE28C84E5900F83CD9 /* ToxicFishListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToxicFishListView.swift; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 				C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */,
 				C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */,
 				C0A8F3B828DF558400CDCFE2 /* SecretLocationsDataLoader.swift */,
+				C02A155B28FE95CB002C3F01 /* DelPinAlert.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				C0619BEB28F251A5007E9569 /* StampAlbumView.swift */,
+				C02A155928FE8AE2002C3F01 /* AddStampAlert.swift */,
 			);
 			path = StampAlbum;
 			sourceTree = "<group>";
@@ -544,12 +550,14 @@
 				C0FFBFE928CAC5FC00E2202C /* ToxicFish.swift in Sources */,
 				C04029DF28C84E5900F83CD9 /* ToxicFishListView.swift in Sources */,
 				C0C3BBDB28DCACF100721EB9 /* AddPinAlert.swift in Sources */,
+				C02A155A28FE8AE2002C3F01 /* AddStampAlert.swift in Sources */,
 				C0A4FC5228D212AA00DACE2E /* FishingLocationView.swift in Sources */,
 				C0C3BBD928D9EAB000721EB9 /* SecretLocation.swift in Sources */,
 				C0619BF028F25F58007E9569 /* MainListView.swift in Sources */,
 				C0A8F3B928DF558400CDCFE2 /* SecretLocationsDataLoader.swift in Sources */,
 				C04029DD28C84E5900F83CD9 /* BaoAnGongFisherApp.swift in Sources */,
 				476B86A75FD7FF3185D6BD82 /* MemberLevelEnum.swift in Sources */,
+				C02A155C28FE95CB002C3F01 /* DelPinAlert.swift in Sources */,
 				D3F515E42F7741D388700C29 /* User+Schema.swift in Sources */,
 				6E758E1D6ABB71ABBE37C90A /* User.swift in Sources */,
 				59B4F045D29A020C08FAB73C /* AmplifyModels.swift in Sources */,
