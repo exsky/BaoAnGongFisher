@@ -24,7 +24,6 @@ struct BaoAnGongFisherApp: App {
                 MainListView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
             } else {
-                //ToxicFishListView()
                 MainListView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }

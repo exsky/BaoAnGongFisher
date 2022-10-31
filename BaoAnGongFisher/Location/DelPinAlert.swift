@@ -51,7 +51,6 @@ struct DelPinAlert: View {
     }
     
     func delSingleLocation(pin: FishPinAnnotation, index: Int) {
-        //func delSingleLocation(at indexSet: IndexSet) {
         self.locationLoader.locationData.remove(at: index)
         self.locationLoader.saveAndReloadLocation()
         self.alertIsPresented.toggle()

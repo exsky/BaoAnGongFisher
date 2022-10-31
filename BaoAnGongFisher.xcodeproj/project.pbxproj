@@ -41,6 +41,7 @@
 		C0C3BBD928D9EAB000721EB9 /* SecretLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */; };
 		C0C3BBDB28DCACF100721EB9 /* AddPinAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */; };
 		C0CCC6DE28FD2F4E00201A27 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CCC6DD28FD2F4E00201A27 /* ImagePicker.swift */; };
+		C0CE0DB4290FB48A00807127 /* FishStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CE0DB3290FB48A00807127 /* FishStamp.swift */; };
 		C0FFBFE928CAC5FC00E2202C /* ToxicFish.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */; };
 		D3F515E42F7741D388700C29 /* User+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5306F7D2CC7DCC46823D9898 /* User+Schema.swift */; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		C0C3BBD828D9EAAF00721EB9 /* SecretLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretLocation.swift; sourceTree = "<group>"; };
 		C0C3BBDA28DCACF000721EB9 /* AddPinAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPinAlert.swift; sourceTree = "<group>"; };
 		C0CCC6DD28FD2F4E00201A27 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		C0CE0DB3290FB48A00807127 /* FishStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishStamp.swift; sourceTree = "<group>"; };
 		C0FFBFE828CAC5FC00E2202C /* ToxicFish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToxicFish.swift; sourceTree = "<group>"; };
 		DDBF69B71642DA6D691A6B31 /* Pods_BaoAnGongFisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BaoAnGongFisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDCBCA4D5713F5DE3E36C99 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = AmplifyModels.swift; sourceTree = "<group>"; };
@@ -191,9 +193,7 @@
 				C09E433428FE56B600C1D661 /* StampAlbum */,
 				C09E433328FE4F8D00C1D661 /* Location */,
 				C0CCC6DC28FD2DDC00201A27 /* Util */,
-				C040409228E86CC8004CA513 /* AuthView.swift */,
 				C04029DC28C84E5900F83CD9 /* BaoAnGongFisherApp.swift */,
-				C0619BEF28F25F58007E9569 /* MainListView.swift */,
 				C04029E028C84E5A00F83CD9 /* Assets.xcassets */,
 				C04029E528C84E5A00F83CD9 /* Persistence.swift */,
 				C02A155728FE5869002C3F01 /* MySecretLocations.json */,
@@ -245,6 +245,7 @@
 			children = (
 				C0619BEB28F251A5007E9569 /* StampAlbumView.swift */,
 				C02A155928FE8AE2002C3F01 /* AddStampAlert.swift */,
+				C0CE0DB3290FB48A00807127 /* FishStamp.swift */,
 			);
 			path = StampAlbum;
 			sourceTree = "<group>";
@@ -272,6 +273,8 @@
 		C0CCC6DC28FD2DDC00201A27 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				C040409228E86CC8004CA513 /* AuthView.swift */,
+				C0619BEF28F25F58007E9569 /* MainListView.swift */,
 				C0CCC6DD28FD2F4E00201A27 /* ImagePicker.swift */,
 			);
 			path = Util;
@@ -547,6 +550,7 @@
 				C0619BEC28F251A5007E9569 /* StampAlbumView.swift in Sources */,
 				C0CCC6DE28FD2F4E00201A27 /* ImagePicker.swift in Sources */,
 				C04029E928C84E5A00F83CD9 /* BaoAnGongFisher.xcdatamodeld in Sources */,
+				C0CE0DB4290FB48A00807127 /* FishStamp.swift in Sources */,
 				C0FFBFE928CAC5FC00E2202C /* ToxicFish.swift in Sources */,
 				C04029DF28C84E5900F83CD9 /* ToxicFishListView.swift in Sources */,
 				C0C3BBDB28DCACF100721EB9 /* AddPinAlert.swift in Sources */,
