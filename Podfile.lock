@@ -9,6 +9,10 @@ PODS:
     - AWSCore (~> 2.28.0)
     - AWSMobileClient (~> 2.28.0)
     - AWSPluginsCore (= 1.28.1)
+  - AmplifyPlugins/AWSS3StoragePlugin (1.28.1):
+    - AWSCore (~> 2.28.0)
+    - AWSPluginsCore (= 1.28.1)
+    - AWSS3 (~> 2.28.0)
   - AWSAuthCore (2.28.0):
     - AWSCore (= 2.28.0)
   - AWSCognitoIdentityProvider (2.28.0):
@@ -25,11 +29,14 @@ PODS:
   - AWSPluginsCore (1.28.1):
     - Amplify (= 1.28.1)
     - AWSCore (~> 2.28.0)
+  - AWSS3 (2.28.0):
+    - AWSCore (= 2.28.0)
   - BetterSegmentedControl (2.0.1)
 
 DEPENDENCIES:
   - Amplify
   - AmplifyPlugins/AWSCognitoAuthPlugin
+  - AmplifyPlugins/AWSS3StoragePlugin
   - BetterSegmentedControl (~> 2.0)
 
 SPEC REPOS:
@@ -42,6 +49,7 @@ SPEC REPOS:
     - AWSCore
     - AWSMobileClient
     - AWSPluginsCore
+    - AWSS3
     - BetterSegmentedControl
 
 SPEC CHECKSUMS:
@@ -53,8 +61,9 @@ SPEC CHECKSUMS:
   AWSCore: 0ebe9ba8a459893cdf268ce0bae61875efd0182b
   AWSMobileClient: 8d466f135e8d851a76e57cbfe65bb67eb522b64c
   AWSPluginsCore: a12e315533b041485d722bdb394bf150ad9cc78e
+  AWSS3: 40a2bed039c432e580f1d4b4f740ca80f0610a9e
   BetterSegmentedControl: 09607b27861d49cbce48b7673b74f9150a3d371a
 
-PODFILE CHECKSUM: 0197eca3bcf135e77df8b7edd594776f407d2bd3
+PODFILE CHECKSUM: 7315544744af4b4f384258944aae584852c618cd
 
 COCOAPODS: 1.11.3

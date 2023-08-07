@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
+import Amplify
 
 struct StampAlbumView: View {
-    var stamps = stampsData
+    @State private var stamps = stampsData
     // The photo and event state
     @State private var addStampAlertIsPresented: Bool = false
     @State private var addStampName: String = ""
     //@State private var showPhotoOptions = false
     @State private var photoSource: PhotoSource?
     @State private var newStampPhoto: UIImage = UIImage()
+    // To add the new stamp into stamps
     
     private let adaptiveColumns = [
         GridItem(.adaptive(minimum: 130))
@@ -60,13 +62,24 @@ struct StampAlbumView: View {
                                 }
                             }
                         }
+                        //StampSync()
                     }
                 } // end of scroll view
-                .navigationTitle("集郵冊")
+                .navigationBarTitle("集郵冊")
+                .navigationBarItems(
+                    trailing:
+                        Button(action: {
+                            print("Sync button pressed...")
+                        }) {
+                            Label("Sync", systemImage: "arrow.up.right.and.arrow.down.left.rectangle.fill")
+                            //Text("Sync")
+                        }
+                )
                 // The box for insert new stamp
                 AddStampAlert(alertIsPresented: $addStampAlertIsPresented,
                               newStampName: $addStampName,
-                              newStampPhoto: $newStampPhoto
+                              newStampPhoto: $newStampPhoto,
+                              wholeStamps: $stamps
                 )
             } // end of zstack
             
@@ -74,7 +87,14 @@ struct StampAlbumView: View {
     }
     
     func createStamp() {
-        // pass
+        // 當輸入介面按下完成後
+        // 1. 把 self.newStampPhoto 的 UIImage 存成檔案
+        // 2. 產生 FishStampView 並給予魚名、圖片路徑、抓到和看到的數量為 1 (如果開雙弓就先不討論)
+        FishStampView(
+            imgName: self.addStampName,
+            fishName: self.addStampName,
+            catched: 1, counted: 1, number: stamps.count
+        )
         print("Create !!!")
     }
 }
@@ -88,7 +108,7 @@ struct StampAlbumView_Previews: PreviewProvider {
 // 郵票
 struct FishStampView: View {
     // 先定義好要接收的參數名稱與類型
-    var imgName: String
+    var imgName: String // TODO: change the src to amplify
     var fishName: String
     var catched: Int
     var counted: Int
@@ -170,6 +190,22 @@ struct FishStampView: View {
     }
     
     func deleteStampByName() {
+        // pass
+    }
+}
+
+struct StampSync: View {
+    // the data function for Stamp model
+    @State var fileStatus: String?
+    
+    var body: some View {
+        if let fileStatus = self.fileStatus {
+            Text(fileStatus)
+        }
+        Button("Upload File", action: uploadStamp).padding()
+    }
+    
+    func uploadStamp() {
         // pass
     }
 }

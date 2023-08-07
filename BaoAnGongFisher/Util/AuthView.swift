@@ -51,19 +51,16 @@ struct AuthView: View {
                     VStack(spacing: 20) {
                         TextField("信箱或電話", text: $viewModel.username)
                             .autocapitalization(.none)
-                        //TextField("暱稱", text: $viewModel.nickname)
                         SecureField("密碼", text: $viewModel.password)
                             .autocapitalization(.none)
-                        //TextField("信箱", text: $viewModel.email)
-                        //TextField("電話", text: $viewModel.phone)
-                        //Button("取得驗證碼", action: viewModel.signUp)
-                        //TextField("驗證碼", text: $viewModel.confirmationCode)
-                        //Button("完成註冊", action: viewModel.confirm)
                         Button("登入", action: {
                             viewModel.signIn()
                             self.fetchStatus()
                         })
                         //Button("檢查狀態", action: self.fetchStatus)
+                        Button("以訪客身份登入", action: {
+                            self.showSignPage = false
+                        })
                     }
                     .padding(.horizontal, 30)
                     .padding(.bottom, 80)
@@ -80,8 +77,6 @@ struct AuthView: View {
                         Button("取得驗證碼", action: viewModel.signUp)
                         TextField("驗證碼", text: $viewModel.confirmationCode)
                         Button("完成註冊", action: viewModel.confirm)
-                        //Button("登入", action: viewModel.signIn)
-                        //Button("檢查狀態", action: self.fetchStatus)
                     }
                     .padding(.horizontal, 30)
                     .padding(.bottom, 80)
@@ -95,8 +90,9 @@ struct AuthView: View {
         _ = Amplify.Auth.fetchAuthSession { result in
             do {
                 let session = try result.get()
-                self.showSignPage = !(session.isSignedIn)
-                print(self.showSignPage)
+                self.showSignPage = !(session.isSignedIn) // hide sign ui
+                print("Session Is Login ? \(session.isSignedIn)")
+                // print(session)
             } catch {
                 print("Fetch auth session failed with error - \(error)")
             }

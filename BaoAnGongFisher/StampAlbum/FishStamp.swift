@@ -5,6 +5,7 @@
 //  Created by nipapa on 2022/10/31.
 //
 
+import Amplify
 import Foundation
 
 struct Stamp: Hashable {

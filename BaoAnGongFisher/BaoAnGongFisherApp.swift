@@ -9,6 +9,7 @@ import Amplify
 import AWSAPIPlugin
 import AWSCognitoAuthPlugin
 import AWSDataStorePlugin
+import AWSS3StoragePlugin
 import SwiftUI
 
 @main
@@ -20,9 +21,7 @@ struct BaoAnGongFisherApp: App {
     var body: some Scene {
         WindowGroup {
             if showSignPage {
-                //AuthView(showSignPage: $showSignPage)
-                MainListView()
-                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                AuthView(showSignPage: $showSignPage)
             } else {
                 MainListView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
@@ -40,8 +39,9 @@ struct BaoAnGongFisherApp: App {
             let models = AmplifyModels()
             try Amplify.add(plugin: AWSAPIPlugin(modelRegistration: models))
             try Amplify.add(plugin: AWSDataStorePlugin(modelRegistration: models))
+            try Amplify.add(plugin: AWSS3StoragePlugin())
             try Amplify.configure()
-            print("The Amplify is configured!")
+            print("The Amplify configured with Auth and Storage plugins!")
         } catch {
             print(error)
         }

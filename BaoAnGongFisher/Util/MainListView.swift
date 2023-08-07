@@ -27,6 +27,9 @@ struct MainListView: View {
                     Text("私藏釣點")
                 }
         }
+        //.tabViewStyle(PageTabViewStyle())
+        //.tabViewStyle(.page)
+        //.edgesIgnoringSafeArea(.all)
         .accentColor(.pink)
     }
 }

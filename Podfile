@@ -8,6 +8,7 @@ target 'BaoAnGongFisher' do
   # Pods for online member function
   pod 'Amplify'
   pod 'AmplifyPlugins/AWSCognitoAuthPlugin'
+  pod 'AmplifyPlugins/AWSS3StoragePlugin'
 
   # The button
   pod 'BetterSegmentedControl', '~> 2.0'

@@ -11,12 +11,14 @@ struct AddStampAlert: View {
     
     let screenSize = UIScreen.main.bounds
     @Binding var alertIsPresented: Bool
-    @Binding var newStampName: String
-    @Binding var newStampPhoto: UIImage
+    @Binding var newStampName: String   // 1
+    @Binding var newStampPhoto: UIImage // 2
+    @Binding var wholeStamps: [Stamp]
     @State private var showPhotoOptions: Bool = false
     //@State private var newStampPhoto = UIImage()
     @State private var photoSource: PhotoSource?
     var boxTitle: String = "新增郵票"
+    @FocusState var isFocused: Bool
     
     var body: some View {
         VStack {
@@ -26,6 +28,10 @@ struct AddStampAlert: View {
                     .frame(width: 50, alignment: .leading)
                 TextField("魚名", text: $newStampName)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .focused($isFocused)
+                Button(action: { isFocused = false }) {
+                    Label("", systemImage: "checkmark.square.fill")
+                }
                 Spacer()
             }
             HStack {
@@ -57,15 +63,20 @@ struct AddStampAlert: View {
             Spacer()
             HStack (alignment: .center){
                 Spacer()
-                Button("完成") {
-                    self.alertIsPresented = false
-                }
-                .foregroundColor(Color(red: 1.0, green: 1.0, blue: 0.0))
-                Spacer()
                 Button("取消") {
+                    // Clean the newStampName and newStampPhoto or not to add
                     self.alertIsPresented = false
                 }
                 .foregroundColor(Color(red: 1.0, green: 0.0, blue: 0.0))
+                Spacer()
+                Button("完成") {
+                    // Keep the newStampName and newStampPhoto
+                    // call create new stamp func and insert to view
+                    
+                    self.alertIsPresented = false
+                    
+                }
+                .foregroundColor(Color(red: 1.0, green: 1.0, blue: 0.0))
                 Spacer()
             }
         }
@@ -100,6 +111,16 @@ struct AddStampAlert: View {
         print("Take fish photo !!")
         self.showPhotoOptions.toggle()
     }
+    
+    func saveFishPicsaveFishPicsaveFishPic() {
+        print("store fish pic locally")
+        //self.wholeStamps.append(Stamp(
+        //    imgName: newStampName,
+        //    fishName: newStampName,
+        //    catched: 1,
+        //    counted: 1
+        //))
+    }
 }
 
 enum PhotoSource: Identifiable {
@@ -116,7 +137,8 @@ struct AddStampAlert_Previews: PreviewProvider {
         AddStampAlert(
             alertIsPresented: .constant(true),
             newStampName: .constant("xx魚"),
-            newStampPhoto: .constant(UIImage())
+            newStampPhoto: .constant(UIImage()),
+            wholeStamps: .constant([])
         )
     }
 }
