@@ -5,6 +5,7 @@
 //  Created by nipapa on 2022/9/24.
 //
 
+import Amplify
 import Foundation
 import CoreLocation
 
@@ -16,6 +17,7 @@ public class LocationLoader {
     init() {
         loadDataFromFile()
         transferCoordinate()
+        loadDataFromAmplify()
     }
 
     private func documentDir() -> String {
@@ -23,7 +25,24 @@ public class LocationLoader {
         return dir[0] as String
     }
 
+    func loadDataFromAmplify() {
+        print("LOAD ~ FROM ~ AMPLIFY")
+        do {
+            Amplify.DataStore.query(FishingSpot.self) { result in
+                switch result {
+                case .success(let spots):
+                    for spot in spots {
+                        print(spot)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+
     func loadDataFromFile() {
+        print("LOAD ~ FROM ~ FILE")
         let manager = FileManager()
         let docDir = self.documentDir()
         let filePath = docDir.appendingFormat("/saved/NewSecretLocations.json")
@@ -147,13 +166,4 @@ public class LocationLoader {
         self.saveDataToFile()
         self.loadDataFromFile()
     }
-}
-
-struct FishPinAnnotation: Hashable, Codable{
-//    private let id = UUID()
-    var name: String
-    var image: String
-    var latitude: Double
-    var longitude: Double
-    var rank: Int
 }

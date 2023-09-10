@@ -71,8 +71,10 @@ struct AuthView: View {
                             .autocapitalization(.none)
                         TextField("信箱", text: $viewModel.email)
                             .autocapitalization(.none)
-                        TextField("電話", text: $viewModel.phone)
-                        SecureField("密碼", text: $viewModel.password)
+                        TextField("電話", text: $viewModel.phone,
+                                  prompt: Text("電話，請以國碼開頭，如 +886"))
+                        SecureField("密碼", text: $viewModel.password,
+                                    prompt: Text("密碼，8位以上英文數字組合"))
                             .autocapitalization(.none)
                         Button("取得驗證碼", action: viewModel.signUp)
                         TextField("驗證碼", text: $viewModel.confirmationCode)
@@ -106,11 +108,11 @@ extension AuthView {
         @Published var nickname: String = ""
         @Published var password: String = ""
         @Published var email: String = ""
-        @Published var phone: String = ""
+        @Published var phone: String = "+886"
         @Published var confirmationCode: String = ""
         
         func signUp() {
-            var username = email    // let email equal to username
+            let username = email    // let email equal to username
             let userAttributes = [
                 AuthUserAttribute(.email, value: email),
                 AuthUserAttribute(.phoneNumber, value: phone),
@@ -137,7 +139,7 @@ extension AuthView {
         }
         
         func confirm() {
-            var username = email    // let email equal to username
+            let username = email    // let email equal to username
             Amplify.Auth.confirmSignUp(for: username, confirmationCode: confirmationCode) { result in
                 switch result {
                 case .success(let confirmResult):

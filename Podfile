@@ -15,13 +15,14 @@ target 'BaoAnGongFisher' do
 
   # Pods for BaoAnGongFisher
 
-  target 'BaoAnGongFisherTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  # Marked 20230904
+  # target 'BaoAnGongFisherTests' do
+  #   inherit! :search_paths
+  #   # Pods for testing
+  # end
 
-  target 'BaoAnGongFisherUITests' do
-    # Pods for testing
-  end
+  # target 'BaoAnGongFisherUITests' do
+  #   # Pods for testing
+  # end
 
 end

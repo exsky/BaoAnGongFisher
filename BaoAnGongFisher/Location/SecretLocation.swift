@@ -46,3 +46,12 @@ struct PinLocation: Identifiable {
         self.rank = 5   // 1: Bad ~ 5: Good
     }
 }
+
+// 釣點圖釘標記位置
+struct FishPinAnnotation: Hashable, Codable{
+    var name: String
+    var image: String
+    var latitude: Double
+    var longitude: Double
+    var rank: Int
+}
