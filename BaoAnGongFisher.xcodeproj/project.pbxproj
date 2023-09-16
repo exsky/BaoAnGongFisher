@@ -13,7 +13,7 @@
 		6957D59F99086A478C1B3B21 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 2975FF76549BF7966A4E65BB /* amplifyconfiguration.json */; };
 		6E758E1D6ABB71ABBE37C90A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C21331CCD270D3DBE1A083D /* User.swift */; };
 		728A39E059B92D90C00B8B85 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 1209FED1B8FACAAD71D4D963 /* awsconfiguration.json */; };
-		85A8B805D195745AFCEBA97D /* Pods_BaoAnGongFisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBF69B71642DA6D691A6B31 /* Pods_BaoAnGongFisher.framework */; };
+		85A8B805D195745AFCEBA97D /* Pods_BaoAnGongFisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBF69B71642DA6D691A6B31 /* Pods_BaoAnGongFisher.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		C02A155828FE5869002C3F01 /* MySecretLocations.json in Resources */ = {isa = PBXBuildFile; fileRef = C02A155728FE5869002C3F01 /* MySecretLocations.json */; };
 		C02A155A28FE8AE2002C3F01 /* AddStampAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A155928FE8AE2002C3F01 /* AddStampAlert.swift */; };
 		C02A155C28FE95CB002C3F01 /* DelPinAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A155B28FE95CB002C3F01 /* DelPinAlert.swift */; };
@@ -67,14 +67,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00A931B98CACF8244829F6AF /* Fish+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "Fish+Schema.swift"; path = "amplify/generated/models/Fish+Schema.swift"; sourceTree = "<group>"; };
+		00A931B98CACF8244829F6AF /* Fish+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Fish+Schema.swift"; path = "amplify/generated/models/Fish+Schema.swift"; sourceTree = "<group>"; };
 		00CD37FFC41C30DBDE176E83 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 		1209FED1B8FACAAD71D4D963 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
-		21F28335EB5BC0EF8897B9EC /* Fish.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = Fish.swift; path = amplify/generated/models/Fish.swift; sourceTree = "<group>"; };
+		21F28335EB5BC0EF8897B9EC /* Fish.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Fish.swift; path = amplify/generated/models/Fish.swift; sourceTree = "<group>"; };
 		2975FF76549BF7966A4E65BB /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		5306F7D2CC7DCC46823D9898 /* User+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; };
-		6D39826CA4FCE22D89CEBF7E /* FishingSpot+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "FishingSpot+Schema.swift"; path = "amplify/generated/models/FishingSpot+Schema.swift"; sourceTree = "<group>"; };
-		81C75240109572C4CD845F7D /* FishingSpot.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = FishingSpot.swift; path = amplify/generated/models/FishingSpot.swift; sourceTree = "<group>"; };
+		6D39826CA4FCE22D89CEBF7E /* FishingSpot+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "FishingSpot+Schema.swift"; path = "amplify/generated/models/FishingSpot+Schema.swift"; sourceTree = "<group>"; };
+		81C75240109572C4CD845F7D /* FishingSpot.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = FishingSpot.swift; path = amplify/generated/models/FishingSpot.swift; sourceTree = "<group>"; };
 		9C21331CCD270D3DBE1A083D /* User.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = User.swift; path = amplify/generated/models/User.swift; sourceTree = "<group>"; };
 		9DD3A32A16304E6E7E00445C /* Pods-BaoAnGongFisher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaoAnGongFisher.debug.xcconfig"; path = "Target Support Files/Pods-BaoAnGongFisher/Pods-BaoAnGongFisher.debug.xcconfig"; sourceTree = "<group>"; };
 		A23508DFA17D1B5BAA2A5101 /* Pods-BaoAnGongFisher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BaoAnGongFisher.release.xcconfig"; path = "Target Support Files/Pods-BaoAnGongFisher/Pods-BaoAnGongFisher.release.xcconfig"; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 				C04029D528C84E5900F83CD9 /* Sources */,
 				C04029D628C84E5900F83CD9 /* Frameworks */,
 				C04029D728C84E5900F83CD9 /* Resources */,
-				840A04803D3DCE6F5B861E74 /* [CP] Embed Pods Frameworks */,
+				47C27F86B4893EA22058462E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -435,6 +435,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		47C27F86B4893EA22058462E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BaoAnGongFisher/Pods-BaoAnGongFisher-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5A8E4A66FBE2E2ED0F52BEE2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -455,26 +470,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		840A04803D3DCE6F5B861E74 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BaoAnGongFisher/Pods-BaoAnGongFisher-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BaoAnGongFisher/Pods-BaoAnGongFisher-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

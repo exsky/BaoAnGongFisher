@@ -54,8 +54,10 @@ struct AuthView: View {
                         SecureField("密碼", text: $viewModel.password)
                             .autocapitalization(.none)
                         Button("登入", action: {
-                            viewModel.signIn()
-                            self.fetchStatus()
+                            Task {
+                                await self.viewModel.signIn()
+                                await self.fetchCurrentAuthSession()
+                            }
                         })
                         //Button("檢查狀態", action: self.fetchStatus)
                         Button("以訪客身份登入", action: {
@@ -76,9 +78,17 @@ struct AuthView: View {
                         SecureField("密碼", text: $viewModel.password,
                                     prompt: Text("密碼，8位以上英文數字組合"))
                             .autocapitalization(.none)
-                        Button("取得驗證碼", action: viewModel.signUp)
+                        Button("取得驗證碼", action:{
+                            Task {
+                                await self.viewModel.signUp()
+                            }
+                        })
                         TextField("驗證碼", text: $viewModel.confirmationCode)
-                        Button("完成註冊", action: viewModel.confirm)
+                        Button("完成註冊", action:{
+                            Task {
+                                await self.viewModel.confirm()
+                            }
+                        })
                     }
                     .padding(.horizontal, 30)
                     .padding(.bottom, 80)
@@ -88,16 +98,15 @@ struct AuthView: View {
         }
     }
     
-    func fetchStatus() {
-        _ = Amplify.Auth.fetchAuthSession { result in
-            do {
-                let session = try result.get()
-                self.showSignPage = !(session.isSignedIn) // hide sign ui
-                print("Session Is Login ? \(session.isSignedIn)")
-                // print(session)
-            } catch {
-                print("Fetch auth session failed with error - \(error)")
-            }
+    func fetchCurrentAuthSession() async {
+        do {
+            let session = try await Amplify.Auth.fetchAuthSession()
+            self.showSignPage = !(session.isSignedIn) // hide sign ui
+            print("Is user signed in - \(session.isSignedIn)")
+        } catch let error as AuthError {
+            print("Fetch session failed with error \(error)")
+        } catch {
+            print("Unexpected error: \(error)")
         }
     }
 }
@@ -111,7 +120,7 @@ extension AuthView {
         @Published var phone: String = "+886"
         @Published var confirmationCode: String = ""
         
-        func signUp() {
+        func signUp() async {
             let username = email    // let email equal to username
             let userAttributes = [
                 AuthUserAttribute(.email, value: email),
@@ -120,56 +129,94 @@ extension AuthView {
             ]
             let options = AuthSignUpRequest.Options(userAttributes: userAttributes)
             
-            Amplify.Auth.signUp(
-                username: username,
-                password: password,
-                options: options
-            ) { result in
-                switch result {
-                case .success(let signUpResult):
-                    if case let .confirmUser(deliveryDetails, _) = signUpResult.nextStep {
-                        print("Delivery details \(String(describing: deliveryDetails))")
-                    } else {
-                        print("SignUp Complete")
-                    }
-                case .failure(let error):
-                    print("An error occurred while registering a user \(error)")
+//        }
+        
+//        func signUp(username: String, password: String, email: String) async {
+//            let userAttributes = [AuthUserAttribute(.email, value: email)]
+//            let options = AuthSignUpRequest.Options(userAttributes: userAttributes)
+            do {
+                let signUpResult = try await Amplify.Auth.signUp(
+                    username: username,
+                    password: password,
+                    options: options
+                )
+                if case let .confirmUser(deliveryDetails, _, userId) = signUpResult.nextStep {
+                    print("Delivery details \(String(describing: deliveryDetails)) for userId: \(String(describing: userId))")
+                } else {
+                    print("SignUp Complete")
                 }
+            } catch let error as AuthError {
+                print("An error occurred while registering a user \(error)")
+            } catch {
+                print("Unexpected error: \(error)")
             }
         }
         
-        func confirm() {
+        func confirm() async {
             let username = email    // let email equal to username
-            Amplify.Auth.confirmSignUp(for: username, confirmationCode: confirmationCode) { result in
-                switch result {
-                case .success(let confirmResult):
-                    print(confirmResult)
-                case .failure(let error):
-                    print(error)
-                }
+            do {
+                let confirmSignUpResult = try await Amplify.Auth.confirmSignUp(
+                    for: username,
+                    confirmationCode: confirmationCode
+                )
+                print("Confirm sign up result completed: \(confirmSignUpResult.isSignUpComplete)")
+            } catch let error as AuthError {
+                print("An error occurred while confirming sign up \(error)")
+            } catch {
+                print("Unexpected error: \(error)")
             }
         }
         
-        func signIn() {
-            self.signOutLocally()
-            Amplify.Auth.signIn(username: username, password: password) { result in
-                switch result {
-                case .success:
+        func signIn() async {
+            do {
+                let signInResult = try await Amplify.Auth.signIn(
+                    username: username,
+                    password: password
+                    )
+                if signInResult.isSignedIn {
                     print("Sign in succeeded")
-                case .failure(let error):
-                    print("Sign in failed \(error)")
                 }
+            } catch let error as AuthError {
+                print("Sign in failed \(error)")
+            } catch {
+                print("Unexpected error: \(error)")
             }
         }
         
-        func signOutLocally() {
-            Amplify.Auth.signOut() { result in
-                switch result {
-                case .success:
-                    print("Successfully signed out")
-                case .failure(let error):
-                    print("Sign out failed with error \(error)")
+        func signOutLocally() async {
+            let result = await Amplify.Auth.signOut()
+            guard let signOutResult = result as? AWSCognitoSignOutResult
+            else {
+                print("Signout failed")
+                return
+            }
+
+            print("Local signout successful: \(signOutResult.signedOutLocally)")
+            switch signOutResult {
+            case .complete:
+                // Sign Out completed fully and without errors.
+                print("Signed out successfully")
+
+            case let .partial(revokeTokenError, globalSignOutError, hostedUIError):
+                // Sign Out completed with some errors. User is signed out of the device.
+                
+                if let hostedUIError = hostedUIError {
+                    print("HostedUI error  \(String(describing: hostedUIError))")
                 }
+
+                if let globalSignOutError = globalSignOutError {
+                    // Optional: Use escape hatch to retry revocation of globalSignOutError.accessToken.
+                    print("GlobalSignOut error  \(String(describing: globalSignOutError))")
+                }
+
+                if let revokeTokenError = revokeTokenError {
+                    // Optional: Use escape hatch to retry revocation of revokeTokenError.accessToken.
+                    print("Revoke token error  \(String(describing: revokeTokenError))")
+                }
+
+            case .failed(let error):
+                // Sign Out failed with an exception, leaving the user signed in.
+                print("SignOut failed with \(error)")
             }
         }
     }

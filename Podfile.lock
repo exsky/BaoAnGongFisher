@@ -9,6 +9,10 @@ PODS:
     - AWSCore (~> 2.33.0)
     - AWSMobileClient (~> 2.33.0)
     - AWSPluginsCore (= 1.30.4)
+  - AmplifyPlugins/AWSDataStorePlugin (1.30.4):
+    - AWSCore (~> 2.33.0)
+    - AWSPluginsCore (= 1.30.4)
+    - SQLite.swift (= 0.13.2)
   - AmplifyPlugins/AWSS3StoragePlugin (1.30.4):
     - AWSCore (~> 2.33.0)
     - AWSPluginsCore (= 1.30.4)
@@ -32,10 +36,14 @@ PODS:
   - AWSS3 (2.33.4):
     - AWSCore (= 2.33.4)
   - BetterSegmentedControl (2.0.1)
+  - SQLite.swift (0.13.2):
+    - SQLite.swift/standard (= 0.13.2)
+  - SQLite.swift/standard (0.13.2)
 
 DEPENDENCIES:
   - Amplify
   - AmplifyPlugins/AWSCognitoAuthPlugin
+  - AmplifyPlugins/AWSDataStorePlugin
   - AmplifyPlugins/AWSS3StoragePlugin
   - BetterSegmentedControl (~> 2.0)
 
@@ -51,6 +59,7 @@ SPEC REPOS:
     - AWSPluginsCore
     - AWSS3
     - BetterSegmentedControl
+    - SQLite.swift
 
 SPEC CHECKSUMS:
   Amplify: 4e41668c8801667e174ab50c12bc3099c71a257f
@@ -63,7 +72,8 @@ SPEC CHECKSUMS:
   AWSPluginsCore: f2188458c27e6cb09597c67876f80611d14275d7
   AWSS3: a0d31bc565dc8a6c5eaa756610ac15704c100674
   BetterSegmentedControl: 09607b27861d49cbce48b7673b74f9150a3d371a
+  SQLite.swift: 4fc2be46c36392e3b87afe6fe7f1801c1daa07ef
 
-PODFILE CHECKSUM: 71b6fd90c493d153609376b46d10e2bad93d3760
+PODFILE CHECKSUM: 91fc96d00783521d88fc082c3187401df3676f94
 
 COCOAPODS: 1.11.3

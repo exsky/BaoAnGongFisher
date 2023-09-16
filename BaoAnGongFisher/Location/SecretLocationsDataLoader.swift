@@ -17,7 +17,9 @@ public class LocationLoader {
     init() {
         loadDataFromFile()
         transferCoordinate()
-        loadDataFromAmplify()
+        Task {
+            await loadFishingSpotFromAmplify()
+        }
     }
 
     private func documentDir() -> String {
@@ -25,19 +27,17 @@ public class LocationLoader {
         return dir[0] as String
     }
 
-    func loadDataFromAmplify() {
+    func loadFishingSpotFromAmplify() async {
         print("LOAD ~ FROM ~ AMPLIFY")
         do {
-            Amplify.DataStore.query(FishingSpot.self) { result in
-                switch result {
-                case .success(let spots):
-                    for spot in spots {
-                        print(spot)
-                    }
-                case .failure(let error):
-                    print(error)
-                }
+            let spots = try await Amplify.DataStore.query(FishingSpot.self)
+            for spot in spots {
+                print("\(spot)")
             }
+        } catch let error as DataStoreError {
+            print("Error retrieving posts \(error)")
+        } catch {
+            print("Unexpected error \(error)")
         }
     }
 
@@ -165,5 +165,8 @@ public class LocationLoader {
     func saveAndReloadLocation() {
         self.saveDataToFile()
         self.loadDataFromFile()
+        Task {
+            await self.loadFishingSpotFromAmplify()
+        }
     }
 }
