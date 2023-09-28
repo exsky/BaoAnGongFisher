@@ -11,7 +11,6 @@ import AWSCognitoAuthPlugin
 import AWSDataStorePlugin
 import AWSS3StoragePlugin
 import SwiftUI
-import Combine
 
 @main
 struct BaoAnGongFisherApp: App {
@@ -24,7 +23,7 @@ struct BaoAnGongFisherApp: App {
             if showSignPage {
                 AuthView(showSignPage: $showSignPage)
             } else {
-                MainListView()
+                MainListView(isSignOut: $showSignPage)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }
         }
@@ -42,50 +41,8 @@ struct BaoAnGongFisherApp: App {
             try Amplify.add(plugin: AWSDataStorePlugin(modelRegistration: models))
             try Amplify.add(plugin: AWSS3StoragePlugin())
             try Amplify.configure()
-            print("The Amplify configured with Auth and Storage plugins!")
-            Task {
-                await fetchCurrentAuthSession()
-            }
         } catch {
             print(error)
         }
     }
-    
-    func fetchCurrentAuthSession() async {
-        do {
-            let session = try await Amplify.Auth.fetchAuthSession()
-            print("Is user signed in - \(session.isSignedIn)")
-        } catch let error as AuthError {
-            print("Fetch session failed with error \(error)")
-        } catch {
-            print("Unexpected error: \(error)")
-        }
-    }
-    
-//    func checkSignIn() {
-//        _ = Amplify.Auth.fetchAuthSession { result in
-//            switch result {
-//            case .success(let signInResult):
-//                if signInResult.isSignedIn {
-//                    print("Confirm sign in succeeded. The user is signed in.")
-//                    self.showSignPage = false
-//                }
-//            case .failure(let error):
-//                print("Confirm sign in failed \(error)")
-//            }
-//        }
-//    }
-//    
-//    func signIn2() async throws {
-//        let subscription = Amplify.API.subscribe(
-//            request: .subscription(of: Todo.self, type: .onCreate)
-//        )
-//
-//        let sink = Amplify.Publisher.create(subscription)
-//            .sink { completion in
-//                // handle completion
-//            } receiveValue: { value in
-//                // handle value
-//            }
-//    }
 }

@@ -5,6 +5,7 @@
 //  Created by nipapa on 2022/9/7.
 //
 
+import Amplify
 import SwiftUI
 
 

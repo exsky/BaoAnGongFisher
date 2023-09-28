@@ -8,10 +8,12 @@
 import Amplify
 import Foundation
 import CoreLocation
+import Foundation.NSString
 
 public class LocationLoader {
 
     @Published var originLoadData = [FishPinAnnotation]()
+    @Published var onlineLoadData = [FishingSpot]()
     @Published var locationData = [PinLocation]()
 
     init() {
@@ -19,6 +21,7 @@ public class LocationLoader {
         transferCoordinate()
         Task {
             await loadFishingSpotFromAmplify()
+            await transferAmpCoordinate()
         }
     }
 
@@ -28,12 +31,12 @@ public class LocationLoader {
     }
 
     func loadFishingSpotFromAmplify() async {
-        print("LOAD ~ FROM ~ AMPLIFY")
         do {
             let spots = try await Amplify.DataStore.query(FishingSpot.self)
-            for spot in spots {
-                print("\(spot)")
-            }
+            //for spot in spots {
+            //    print("\(spot)")
+            //}
+            self.onlineLoadData = spots
         } catch let error as DataStoreError {
             print("Error retrieving posts \(error)")
         } catch {
@@ -84,6 +87,26 @@ public class LocationLoader {
         }
     }
     
+    // 將 FishingSpot 轉換後加入 locationData
+    // 為了讀入 Amplify DataStore所製作
+    func transferAmpCoordinate() async {    // 將目前程式使用中的圖釘清單內新增轉換後的資料
+        for spot in self.onlineLoadData {
+            let coordinate = spot.coordinate!.split(separator:[",", " "])
+            let x = (coordinate[0] as NSString).doubleValue
+            let y = (coordinate[1] as NSString).doubleValue
+            var imgUrl: String = spot.imageUrl ?? "Empty"
+            // print(imgUrl)
+            self.locationData.append(
+                PinLocation(
+                    name: spot.spotName!,
+                    image: imgUrl,
+                    coordinate: CLLocationCoordinate2D(latitude: x, longitude: y),
+                    rank: Int(spot.recommendationRate!)
+                )
+            )
+        }
+    }
+
     // 以 locationData 生成新的 [FishPinAnnotation]
     // 這是為了提供給寫檔案時使用
     func encodeCoordinate() -> [FishPinAnnotation] {

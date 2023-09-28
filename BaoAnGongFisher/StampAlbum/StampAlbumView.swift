@@ -10,14 +10,13 @@ import Amplify
 
 struct StampAlbumView: View {
     @State private var stamps = stampsData
-    // The photo and event state
     @State private var addStampAlertIsPresented: Bool = false
     @State private var addStampName: String = ""
-    //@State private var showPhotoOptions = false
     @State private var photoSource: PhotoSource?
     @State private var newStampPhoto: UIImage = UIImage()
-    // To add the new stamp into stamps
-    
+    @State private var uploadFilenameQueue: [URL] = []
+    @State private var userAttr: [String:String] = [:]
+
     private let adaptiveColumns = [
         GridItem(.adaptive(minimum: 130))
     ]
@@ -27,7 +26,6 @@ struct StampAlbumView: View {
             ZStack(alignment: .center) {
                 ScrollView{
                     LazyVGrid(columns: adaptiveColumns, spacing: 10) {
-                        //ForEach(stampData, id: \.self) { number in
                         ForEach(Array(zip(stamps.indices, stamps)), id: \.0) { index, stamp in
                             ZStack{
                                 // Stamp here
@@ -35,31 +33,6 @@ struct StampAlbumView: View {
                                     imgName: stamp.imgName, fishName: stamp.fishName,
                                     catched: stamp.catched, counted: stamp.counted, number: index+1
                                 )
-                            } // end of zstack
-                        } // end of stampData
-                        ZStack{ // 跳出新增郵票框框
-                            Rectangle()  // 底部是個方塊
-                                .frame(width: 180, height: 250)
-                                .foregroundColor(.gray)
-                                .cornerRadius(10)
-                            VStack {
-                                Image(uiImage: newStampPhoto)
-                                    .resizable()
-                                    .frame(width: 80, height: 80)
-                            }
-                            Button(action: createStamp) {
-                                Label("", systemImage: "plus.rectangle.on.folder.fill")
-                                .labelStyle(.iconOnly)
-                                .frame(width: 40, height:40)
-                                .foregroundColor(.white)
-                                .background(Color.black)
-                                .cornerRadius(15)
-                                .padding(5)
-                                .onTapGesture {
-                                    self.addStampAlertIsPresented = true
-                                    // self.showPhotoOptions.toggle()
-                                    self.createStamp()
-                                }
                             }
                         }
                         //StampSync()
@@ -68,34 +41,77 @@ struct StampAlbumView: View {
                 .navigationBarTitle("集郵冊")
                 .navigationBarItems(
                     trailing:
-                        Button(action: {
-                            print("Sync button pressed...")
-                        }) {
-                            Label("Sync", systemImage: "arrow.up.right.and.arrow.down.left.rectangle.fill")
-                            //Text("Sync")
+                        HStack {
+                            Button(action: {
+                                Task {
+                                    await uploadStamp()
+                                }
+                            }) {
+                                Label("Sync", systemImage: "arrow.up.right.and.arrow.down.left.rectangle.fill")
+                                //Text("Sync")
+                            }
+                            Button(action: createStamp) {
+                                Label("", systemImage: "plus.rectangle.on.folder.fill")
+                                .onTapGesture {
+                                    self.addStampAlertIsPresented.toggle()
+                                }
+                            }
                         }
                 )
                 // The box for insert new stamp
                 AddStampAlert(alertIsPresented: $addStampAlertIsPresented,
                               newStampName: $addStampName,
                               newStampPhoto: $newStampPhoto,
-                              wholeStamps: $stamps
+                              wholeStamps: $stamps,
+                              fileQueue: $uploadFilenameQueue
                 )
             } // end of zstack
             
         }
     }
-    
-    func createStamp() {
-        // 當輸入介面按下完成後
-        // 1. 把 self.newStampPhoto 的 UIImage 存成檔案
-        // 2. 產生 FishStampView 並給予魚名、圖片路徑、抓到和看到的數量為 1 (如果開雙弓就先不討論)
-        FishStampView(
-            imgName: self.addStampName,
-            fishName: self.addStampName,
-            catched: 1, counted: 1, number: stamps.count
-        )
-        print("Create !!!")
+
+    func fetchUserAttr() async -> [String:String] {
+        var userAttr: [String:String] = [:]
+        do {
+            let curAuthMsg = try await Amplify.Auth.fetchUserAttributes()
+            for attr in curAuthMsg {
+                userAttr[attr.key.rawValue] = attr.value
+            }
+        } catch {
+            print("Failed to fetch user attributes")
+        }
+        return userAttr
+    }
+
+    func createStamp() {    // Let AddStampAlert show or hide
+        print("Press AddStampAlert Button")
+    }
+
+    func uploadStamp() async {
+        print("Sync local pic -> Amplify S3")
+        let attrs = await fetchUserAttr()
+        let username = attrs["name"] ?? "guest"
+        for picUrl in uploadFilenameQueue {
+            let fileNameKey = picUrl.lastPathComponent
+            print("Upload -- \(fileNameKey)")
+            let uploadTask = Amplify.Storage.uploadFile(
+                key: "\(username)/\(fileNameKey)",
+                local: picUrl
+            )
+            //Task {
+            //    for await progress in await uploadTask.progress {
+            //        print("Progress: \(progress)")
+            //    }
+            //}
+            do {
+                let data = try await uploadTask.value
+                print("Completed: \(data)")
+            } catch {
+                print("Couldn't upload file: \(picUrl)")
+            }
+        }
+        print("Clean queue")
+        uploadFilenameQueue.removeAll()
     }
 }
 
@@ -143,9 +159,19 @@ struct FishStampView: View {
             }
             .padding(10)
             Text("**\(fishName)**")
-            Image("\(fishName)")
-                .resizable()
-                .frame(width: 80, height: 80)
+            let imageExists: Bool = UIImage(named: fishName) != nil
+            if imageExists {
+                //let _ = print("從 Assets 拿圖片")
+                Image("\(fishName)")
+                    .resizable()
+                    .frame(width: 80, height: 80)
+            } else {
+                //let _ = print("從手機端的檔案引用圖片")
+                let img = loadStampImageByName(fishname: fishName)
+                Image(uiImage: img)
+                    .resizable()
+                    .frame(width: 80, height: 80)
+            }
             // Button
             HStack{
                 Button(action: addStampByName) {
@@ -179,33 +205,42 @@ struct FishStampView: View {
             Spacer()
         } // end of a stamp
     }
-    
+
+    func documentDir() -> String {
+        let dir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        return dir[0] as String
+    }
+
+    func loadStampImageByName(fishname: String) -> UIImage {
+        let manager = FileManager()
+        let docDir = self.documentDir()
+        let filePath = docDir.appendingFormat("/saved/\(fishname).png")
+        //let fileUrl = NSURL(fileURLWithPath: filePath).absoluteString!
+        //let path = fileUrl.replacingOccurrences(of: "file://", with: "")
+
+        if manager.fileExists(atPath: filePath) {
+            let img = UIImage(contentsOfFile: filePath)
+            //print("load 1: \(filePath)")
+            return img!
+        } else {
+            print("no \(fishname).png found")
+            //var hola = manager.urls(for: .documentDirectory, in: .userDomainMask)[0].path
+            //hola = hola.appendingPathComponent("saved")
+            //let yale = try? manager.contentsOfDirectory(atPath:hola)
+            //print(yale)
+            return UIImage()
+        }
+    }
+
     func addStampByName() {
         // pass
-        print("ADD !!!")
     }
-    
+
     func editStampByName() {
         // pass
     }
-    
-    func deleteStampByName() {
-        // pass
-    }
-}
 
-struct StampSync: View {
-    // the data function for Stamp model
-    @State var fileStatus: String?
-    
-    var body: some View {
-        if let fileStatus = self.fileStatus {
-            Text(fileStatus)
-        }
-        Button("Upload File", action: uploadStamp).padding()
-    }
-    
-    func uploadStamp() {
+    func deleteStampByName() {
         // pass
     }
 }
