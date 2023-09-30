@@ -94,7 +94,7 @@ public class LocationLoader {
             let coordinate = spot.coordinate!.split(separator:[",", " "])
             let x = (coordinate[0] as NSString).doubleValue
             let y = (coordinate[1] as NSString).doubleValue
-            var imgUrl: String = spot.imageUrl ?? "Empty"
+            let imgUrl: String = spot.imageUrl ?? "Empty"
             // print(imgUrl)
             self.locationData.append(
                 PinLocation(

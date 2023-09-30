@@ -9,7 +9,8 @@ import SwiftUI
 import Amplify
 
 struct StampAlbumView: View {
-    @State private var stamps = stampsData
+    //@State private var stamps = stampsData
+    @State private var stamps:[Stamp] = []
     @State private var addStampAlertIsPresented: Bool = false
     @State private var addStampName: String = ""
     @State private var photoSource: PhotoSource?
@@ -21,6 +22,10 @@ struct StampAlbumView: View {
         GridItem(.adaptive(minimum: 130))
     ]
     
+    init () {
+        scanLocalStamp()
+    }
+
     var body: some View {
         NavigationView{
             ZStack(alignment: .center) {
@@ -35,13 +40,19 @@ struct StampAlbumView: View {
                                 )
                             }
                         }
-                        //StampSync()
                     }
                 } // end of scroll view
                 .navigationBarTitle("集郵冊")
                 .navigationBarItems(
                     trailing:
                         HStack {
+                            Button(action: {
+                                Task {
+                                    await fetchStamp()
+                                }
+                            }) {
+                                Label("Fetch", systemImage: "tray.and.arrow.down.fill")
+                            }
                             Button(action: {
                                 Task {
                                     await uploadStamp()
@@ -93,9 +104,11 @@ struct StampAlbumView: View {
         let username = attrs["name"] ?? "guest"
         for picUrl in uploadFilenameQueue {
             let fileNameKey = picUrl.lastPathComponent
+            let fishDirUrl = picUrl.deletingLastPathComponent()
+            let fishDirName = fishDirUrl.lastPathComponent
             print("Upload -- \(fileNameKey)")
             let uploadTask = Amplify.Storage.uploadFile(
-                key: "\(username)/\(fileNameKey)",
+                key: "\(username)/\(fishDirName)/\(fileNameKey)",
                 local: picUrl
             )
             //Task {
@@ -112,6 +125,88 @@ struct StampAlbumView: View {
         }
         print("Clean queue")
         uploadFilenameQueue.removeAll()
+    }
+
+    func fetchStamp() async {
+        print("Fetch Amplify S3 Fish dir")
+        let attrs = await fetchUserAttr()
+        let username = attrs["name"] ?? "guest"
+        var toBeDownloadedList:[String] = []
+
+        // Base Dir
+        let manager = FileManager.default
+        guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return
+        }
+
+        do {
+            let options = StorageListRequest.Options(path:username, pageSize: 1000)
+            let listResult = try await Amplify.Storage.list(options: options)
+            listResult.items.forEach { item in
+                print("Key: \(item.key)")
+                toBeDownloadedList.append(item.key)
+                // Key: email/生魚片/20230930161239.png
+            }
+        } catch {
+            print("failed to fetch s3 file key")
+        }
+        print("==============")
+        for picKey in toBeDownloadedList {
+            print(picKey)
+            let pathSplit = picKey.split(separator: ["/"])
+            let localFileUrl = url.appendingPathComponent("saved/pics/\(pathSplit[1])/\(pathSplit[2])")
+            // Create fish dir
+            let localFishDir = url.appendingPathComponent("saved/pics/\(pathSplit[1])")
+            do {
+                try manager.createDirectory(at: localFishDir, withIntermediateDirectories: true)
+            } catch {
+                print(error)
+            }
+            // Start download
+            let downloadTask = Amplify.Storage.downloadFile(
+                key: picKey,
+                local: localFileUrl,
+                options: nil
+            )
+            do {
+                try await downloadTask.value
+                print("Completed: \(picKey)")
+                stamps.append(Stamp(imgName: "/saved/pics/\(pathSplit[1])/\(pathSplit[2])",
+                                     fishName: String(pathSplit[1]),
+                                     catched: 1, counted: 1)
+                )
+            } catch {
+                print("failed to download")
+            }
+        }
+    }
+
+    func documentDir() -> String {
+        let dir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        return dir[0] as String
+    }
+
+    func scanLocalStamp() {
+        let manager = FileManager()
+        let docDir = self.documentDir()
+        let dirPath = docDir.appendingFormat("/saved/pics/")
+        let contentsOfDirectory = try? manager.contentsOfDirectory(atPath: dirPath)
+        if contentsOfDirectory != nil {
+            print("Fish found")
+            let fishes:[String] = contentsOfDirectory!
+            print(fishes)
+            for fish in fishes {
+                stamps.append(Stamp)
+            }
+//            let filePath = dirPath.appendingFormat(firstFile)
+//            if manager.fileExists(atPath: filePath) {
+//                print("A")
+//            } else {
+//                print("B")
+//            }
+        } else {
+            print("empty dir")
+        }
     }
 }
 
@@ -214,22 +309,22 @@ struct FishStampView: View {
     func loadStampImageByName(fishname: String) -> UIImage {
         let manager = FileManager()
         let docDir = self.documentDir()
-        let filePath = docDir.appendingFormat("/saved/\(fishname).png")
-        //let fileUrl = NSURL(fileURLWithPath: filePath).absoluteString!
-        //let path = fileUrl.replacingOccurrences(of: "file://", with: "")
-
-        if manager.fileExists(atPath: filePath) {
-            let img = UIImage(contentsOfFile: filePath)
-            //print("load 1: \(filePath)")
-            return img!
+        let dirPath = docDir.appendingFormat("/saved/pics/\(fishname)/")
+        let contentsOfDirectory = try? manager.contentsOfDirectory(atPath: dirPath)
+        if contentsOfDirectory != nil {
+            let firstFile:String! = contentsOfDirectory![0]
+            let filePath = dirPath.appendingFormat(firstFile)
+            if manager.fileExists(atPath: filePath) {
+                let img = UIImage(contentsOfFile: filePath)
+                return img!
+            } else {
+                print("no \(fishname).png found")
+                return UIImage()
+            }
         } else {
-            print("no \(fishname).png found")
-            //var hola = manager.urls(for: .documentDirectory, in: .userDomainMask)[0].path
-            //hola = hola.appendingPathComponent("saved")
-            //let yale = try? manager.contentsOfDirectory(atPath:hola)
-            //print(yale)
-            return UIImage()
+            print("empty dir")
         }
+        return UIImage()
     }
 
     func addStampByName() {

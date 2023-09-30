@@ -136,15 +136,19 @@ struct AddStampAlert: View {
         guard let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return
         }
-        //print(url.path)
-        let newFolderUrl = url.appendingPathComponent("saved")
+        let newFolderUrl = url.appendingPathComponent("saved/pics/\(newStampName)")
         do {
             try manager.createDirectory(at: newFolderUrl, withIntermediateDirectories: true)
         } catch {
             print(error)
         }
+        // datetime string format
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMddHHmmss"
+        let nowString = formatter.string(from: now)
         // Create file
-        let fileUrl = newFolderUrl.appendingPathComponent("\(newStampName).png")
+        let fileUrl = newFolderUrl.appendingPathComponent("\(nowString).png")
         print(fileUrl)  // 編碼會變成 url 型態，所以中文字會變成 %E4%BD%A0 這種樣子
         let pngData = image.pngData()
         //let path = documentDirectoryPath()?.appendingPathComponent("/pics/\(newStampName).png")
