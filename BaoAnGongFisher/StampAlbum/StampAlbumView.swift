@@ -9,7 +9,6 @@ import SwiftUI
 import Amplify
 
 struct StampAlbumView: View {
-    //@State private var stamps = stampsData
     @State private var stamps:[Stamp] = []
     @State private var addStampAlertIsPresented: Bool = false
     @State private var addStampName: String = ""
@@ -17,13 +16,16 @@ struct StampAlbumView: View {
     @State private var newStampPhoto: UIImage = UIImage()
     @State private var uploadFilenameQueue: [URL] = []
     @State private var userAttr: [String:String] = [:]
+    @State var statusText: String = ""
 
     private let adaptiveColumns = [
         GridItem(.adaptive(minimum: 130))
     ]
     
     init () {
-        scanLocalStamp()
+        let localPicsInfo = scanLocalStamp()
+        let localStamp = generateStamps(info:localPicsInfo)
+        _stamps = State(initialValue: localStamp)
     }
 
     var body: some View {
@@ -33,10 +35,9 @@ struct StampAlbumView: View {
                     LazyVGrid(columns: adaptiveColumns, spacing: 10) {
                         ForEach(Array(zip(stamps.indices, stamps)), id: \.0) { index, stamp in
                             ZStack{
-                                // Stamp here
                                 FishStampView(
                                     imgName: stamp.imgName, fishName: stamp.fishName,
-                                    catched: stamp.catched, counted: stamp.counted, number: index+1
+                                    counted: stamp.counted, number: index+1
                                 )
                             }
                         }
@@ -46,6 +47,8 @@ struct StampAlbumView: View {
                 .navigationBarItems(
                     trailing:
                         HStack {
+                            //Text(statusText)
+                            TextField("statusBar", text: $statusText)
                             Button(action: {
                                 Task {
                                     await fetchStamp()
@@ -111,11 +114,12 @@ struct StampAlbumView: View {
                 key: "\(username)/\(fishDirName)/\(fileNameKey)",
                 local: picUrl
             )
-            //Task {
-            //    for await progress in await uploadTask.progress {
-            //        print("Progress: \(progress)")
-            //    }
-            //}
+            Task {
+                for await progress in await uploadTask.progress {
+                    print("Progress: \(progress)")
+                    self.statusText = progress.description
+                }
+            }
             do {
                 let data = try await uploadTask.value
                 print("Completed: \(data)")
@@ -168,12 +172,19 @@ struct StampAlbumView: View {
                 local: localFileUrl,
                 options: nil
             )
+            Task {
+                for await progress in await downloadTask.progress {
+                    // print("Progress: \(progress)")
+                    self.statusText = progress.description
+                }
+            }
             do {
                 try await downloadTask.value
                 print("Completed: \(picKey)")
+                print("Local: "+"/saved/pics/\(pathSplit[1])/\(pathSplit[2])")
                 stamps.append(Stamp(imgName: "/saved/pics/\(pathSplit[1])/\(pathSplit[2])",
                                      fishName: String(pathSplit[1]),
-                                     catched: 1, counted: 1)
+                                     counted: 1)  // TODO: 辨別同名魚是否出現過
                 )
             } catch {
                 print("failed to download")
@@ -186,156 +197,52 @@ struct StampAlbumView: View {
         return dir[0] as String
     }
 
-    func scanLocalStamp() {
-        let manager = FileManager()
+    func generateStamps(info: [String: Any]) -> [Stamp] {
+        var localStampPics:[Stamp] = []
+        for fish in info {
+            if let details = info[fish.key]! as? [String:Any] {
+                //print(details["cover"]!)
+                localStampPics.append(
+                    Stamp(imgName: details["cover"]! as! String,
+                          fishName: fish.key, counted: details["count"]! as! Int)
+                )
+            }
+        }
+        return localStampPics
+    }
+
+    func scanLocalStamp() -> [String:Any] {  // Return first img as stamp cover
+        //var localStampPics:[Stamp] = []
+        var localStampInfo:[String:Any] = [:]
+        let manager = FileManager.default
         let docDir = self.documentDir()
-        let dirPath = docDir.appendingFormat("/saved/pics/")
+        let dirPath = docDir.appendingFormat("/saved/pics")
         let contentsOfDirectory = try? manager.contentsOfDirectory(atPath: dirPath)
         if contentsOfDirectory != nil {
-            print("Fish found")
             let fishes:[String] = contentsOfDirectory!
-            print(fishes)
+            // print(fishes)  // 所有在手機裡裡面的魚名字
             for fish in fishes {
-                stamps.append(Stamp)
+                // 目錄裡的魚照片
+                let fishDirPath = dirPath.appendingFormat("/\(fish)")
+                let picOfFish = try? manager.contentsOfDirectory(atPath: fishDirPath)
+                if picOfFish != nil {
+                    let pics:[String] = picOfFish!
+                    localStampInfo[fish] = [
+                        "cover": "/saved/pics/\(fish)/\(pics[0])",
+                        "count": pics.count
+                    ] as [String : Any]
+                }
             }
-//            let filePath = dirPath.appendingFormat(firstFile)
-//            if manager.fileExists(atPath: filePath) {
-//                print("A")
-//            } else {
-//                print("B")
-//            }
         } else {
             print("empty dir")
         }
+        //return localStampPics
+    return localStampInfo
     }
 }
 
 struct StampAlbumView_Previews: PreviewProvider {
     static var previews: some View {
         StampAlbumView()
-    }
-}
-
-// 郵票
-struct FishStampView: View {
-    // 先定義好要接收的參數名稱與類型
-    var imgName: String // TODO: change the src to amplify
-    var fishName: String
-    var catched: Int
-    var counted: Int
-    var number: Int // The fish serial number
-    private let colors: [Color] = [
-        .red, .blue, .green, .yellow, .pink, .cyan, .indigo]
-    
-    var body: some View {
-        Rectangle()  // 底部是個方塊
-            .frame(width: 180, height: 250)
-            .foregroundColor(colors[number%7])
-            .cornerRadius(10)
-        VStack{  // 中間放一層 垂直堆 // A stamp
-            HStack{
-                Text("\(catched)/\(counted)")
-                    .padding()
-                    .font(.footnote)
-                Spacer()
-                Text("\(number)")
-                    .frame(width: 15, height: 15, alignment: .center)
-                    .font(.footnote)
-                    //.fontWeight(.bold)
-                    .padding()
-                    //.background(Color(.gray))
-                    .overlay(
-                        Circle()
-                            .size(width: 16, height: 16)
-                            .offset(x: 16,y: 16)
-                            .scale(1.5)
-                            .stroke(Color.orange, lineWidth: 3)
-                    )
-            }
-            .padding(10)
-            Text("**\(fishName)**")
-            let imageExists: Bool = UIImage(named: fishName) != nil
-            if imageExists {
-                //let _ = print("從 Assets 拿圖片")
-                Image("\(fishName)")
-                    .resizable()
-                    .frame(width: 80, height: 80)
-            } else {
-                //let _ = print("從手機端的檔案引用圖片")
-                let img = loadStampImageByName(fishname: fishName)
-                Image(uiImage: img)
-                    .resizable()
-                    .frame(width: 80, height: 80)
-            }
-            // Button
-            HStack{
-                Button(action: addStampByName) {
-                    Label("", systemImage: "plus.rectangle.fill.on.rectangle.fill")
-                    .labelStyle(.iconOnly)
-                    .frame(width: 40, height:40)
-                    .foregroundColor(.white)
-                    .background(Color.black)
-                    .cornerRadius(15)
-                    .padding(5)
-                }
-                Button(action: editStampByName) {
-                    Label("", systemImage: "pencil")
-                    .labelStyle(.iconOnly)
-                    .frame(width: 40, height:40)
-                    .foregroundColor(.white)
-                    .background(Color.black)
-                    .cornerRadius(15)
-                    .padding(5)
-                }
-                Button(action: deleteStampByName) {
-                    Label("", systemImage: "xmark.bin")
-                    .labelStyle(.iconOnly)
-                    .frame(width: 40, height:40)
-                    .foregroundColor(.white)
-                    .background(Color.black)
-                    .cornerRadius(15)
-                    .padding(5)
-                }
-            }
-            Spacer()
-        } // end of a stamp
-    }
-
-    func documentDir() -> String {
-        let dir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        return dir[0] as String
-    }
-
-    func loadStampImageByName(fishname: String) -> UIImage {
-        let manager = FileManager()
-        let docDir = self.documentDir()
-        let dirPath = docDir.appendingFormat("/saved/pics/\(fishname)/")
-        let contentsOfDirectory = try? manager.contentsOfDirectory(atPath: dirPath)
-        if contentsOfDirectory != nil {
-            let firstFile:String! = contentsOfDirectory![0]
-            let filePath = dirPath.appendingFormat(firstFile)
-            if manager.fileExists(atPath: filePath) {
-                let img = UIImage(contentsOfFile: filePath)
-                return img!
-            } else {
-                print("no \(fishname).png found")
-                return UIImage()
-            }
-        } else {
-            print("empty dir")
-        }
-        return UIImage()
-    }
-
-    func addStampByName() {
-        // pass
-    }
-
-    func editStampByName() {
-        // pass
-    }
-
-    func deleteStampByName() {
-        // pass
     }
 }

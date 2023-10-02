@@ -84,7 +84,7 @@ struct AddStampAlert: View {
                     // 在 binding 資料 StampData 加入新郵票
                     wholeStamps.append(Stamp(imgName: "/saved/pics/\(newStampName).png",
                                              fishName: newStampName,
-                                             catched: 1, counted: 1)
+                                             counted: 1)  // TODO: 辨別同名魚是否出現過
                     )
                 }
                 .foregroundColor(Color(red: 1.0, green: 1.0, blue: 0.0))
@@ -153,7 +153,7 @@ struct AddStampAlert: View {
         let pngData = image.pngData()
         //let path = documentDirectoryPath()?.appendingPathComponent("/pics/\(newStampName).png")
         try? pngData?.write(to: fileUrl)
-        print(type(of: fileUrl))
+        // print(type(of: fileUrl))
         print("save pic to \(fileUrl)")
         fileQueue.append(fileUrl)
     }
